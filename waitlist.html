@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sonar — Join the Waitlist</title>
+<meta name="description" content="Sonar is the operating system for freelancers. Join the waitlist for early access.">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --cream: #f0e4cb;
+  --dark: #3B2A2A;
+  --brown: #755540;
+  --burnt-orange: #DA7C30;
+  --text-1: rgba(59, 42, 42, 0.95);
+  --text-2: rgba(59, 42, 42, 0.6);
+  --text-3: rgba(59, 42, 42, 0.35);
+  --font: 'Helvetica Now Display', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  --mono: 'SF Mono', 'Consolas', 'Liberation Mono', monospace;
+}
+
+html { font-size: 16px; -webkit-font-smoothing: antialiased; }
+
+body {
+  font-family: var(--font);
+  background: var(--cream);
+  color: var(--text-1);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+}
+
+::selection { background: var(--burnt-orange); color: var(--cream); }
+
+body::after {
+  content: '';
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.03;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 256px 256px;
+}
+
+.waitlist {
+  max-width: 480px;
+  width: 100%;
+}
+
+.back {
+  font-family: var(--mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-3);
+  text-decoration: none;
+  display: inline-block;
+  margin-bottom: 4rem;
+  transition: color 0.3s ease;
+}
+
+.back:hover { color: var(--burnt-orange); }
+
+.waitlist h1 {
+  font-size: clamp(2.5rem, 6vw, 4rem);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 0.95;
+  color: var(--dark);
+  margin-bottom: 1.5rem;
+}
+
+.waitlist p {
+  font-size: 1rem;
+  line-height: 1.7;
+  color: var(--text-2);
+  margin-bottom: 3rem;
+  max-width: 36ch;
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.form-group label {
+  font-family: var(--mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--text-3);
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 0.8rem 0;
+  font-family: var(--font);
+  font-size: 1.1rem;
+  color: var(--dark);
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid var(--text-3);
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+
+.form-group input::placeholder {
+  color: var(--text-3);
+}
+
+.form-group input:focus {
+  border-color: var(--burnt-orange);
+}
+
+.submit-btn {
+  font-family: var(--font);
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--cream);
+  background: var(--dark);
+  border: none;
+  padding: 1rem 2.5rem;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  margin-top: 1rem;
+}
+
+.submit-btn:hover {
+  background: var(--burnt-orange);
+}
+
+.success {
+  display: none;
+}
+
+.success h2 {
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1;
+  color: var(--dark);
+  margin-bottom: 1rem;
+}
+
+.success p {
+  font-size: 1rem;
+  line-height: 1.7;
+  color: var(--text-2);
+}
+
+.form-active .success { display: none; }
+.form-done .form-fields { display: none; }
+.form-done .success { display: block; }
+</style>
+</head>
+<body>
+
+<div class="waitlist form-active" id="waitlist">
+  <a href="index.html" class="back">&larr; Bryan Clark</a>
+  <h1>Sonar</h1>
+  <p>The operating system for freelancers. We're building it now. Drop your email to get early access.</p>
+
+  <div class="form-fields">
+    <div class="form-group">
+      <label>Name</label>
+      <input type="text" id="name" placeholder="Your name" autocomplete="name">
+    </div>
+    <div class="form-group">
+      <label>Email</label>
+      <input type="email" id="email" placeholder="you@example.com" autocomplete="email">
+    </div>
+    <button class="submit-btn" id="submitBtn">Join the waitlist</button>
+  </div>
+
+  <div class="success">
+    <h2>You're in.</h2>
+    <p>We'll reach out when Sonar is ready. In the meantime, keep building.</p>
+  </div>
+</div>
+
+<script>
+document.getElementById('submitBtn').addEventListener('click', () => {
+  const name = document.getElementById('name').value.trim();
+  const email = document.getElementById('email').value.trim();
+  if (!email) {
+    document.getElementById('email').focus();
+    return;
+  }
+  const w = document.getElementById('waitlist');
+  w.classList.remove('form-active');
+  w.classList.add('form-done');
+});
+</script>
+
+</body>
+</html>
