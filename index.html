@@ -464,7 +464,7 @@ nav.scrolled {
 
 .work-link {
   display: grid;
-  grid-template-columns: 3ch 1fr 12rem 10rem 4rem;
+  grid-template-columns: 3ch 1fr 10rem 4rem;
   align-items: baseline;
   gap: 0 var(--space-md);
   padding: 1.5rem 0;
@@ -526,12 +526,13 @@ nav.scrolled {
   color: var(--text-3);
 }
 
-/* --- Project Links (Notion-style) --- */
+/* --- Project Links (inline under descriptor) --- */
 .work-links {
   list-style: none;
   display: flex;
-  flex-direction: column;
-  gap: 0.15rem;
+  flex-direction: row;
+  gap: 0.6rem;
+  margin-top: 0.35rem;
 }
 
 .work-links li a {
@@ -787,15 +788,9 @@ footer {
     gap: var(--space-xs) var(--space-sm);
   }
 
-  .work-links,
   .work-category,
   .work-year {
     grid-column: 2;
-  }
-
-  .work-links {
-    flex-direction: row;
-    gap: var(--space-sm);
   }
 
   .stat-row {
@@ -863,10 +858,10 @@ footer {
   <p class="section-label">Campaigns</p>
   <div class="collage-track-wrapper">
     <div class="collage-track">
-      <!-- Row 1 — Events & Creative -->
+      <!-- Row 1 — Entertainment & Creative -->
       <div class="collage-item">
         <video src="media/purge-visuals.mp4" autoplay muted loop playsinline></video>
-        <div class="collage-ribbon"><span class="collage-ribbon-name">Events</span></div>
+        <div class="collage-ribbon"><span class="collage-ribbon-name">Entertainment</span></div>
         <div class="collage-data">
           <span class="collage-campaign">PURGE — Tour</span>
           <div class="collage-detail">
@@ -877,8 +872,8 @@ footer {
         </div>
       </div>
       <div class="collage-item">
-        <img src="media/hardrock-raceweek.jpg" alt="DAER Dayclub" style="position: absolute; top: -30px; bottom: 26px; left: 0; right: 0; width: 100%; height: auto; object-fit: cover; object-position: center 100%;">
-        <div class="collage-ribbon"><span class="collage-ribbon-name">Events</span></div>
+        <img src="media/hardrock-raceweek.jpg" alt="DAER Dayclub" style="position: absolute; top: -30px; left: 0; width: 100%; height: 214px; object-fit: cover; object-position: center 100%;">
+        <div class="collage-ribbon"><span class="collage-ribbon-name">Entertainment</span></div>
         <div class="collage-data">
           <span class="collage-campaign">DAER — Dayclub</span>
           <div class="collage-detail">
@@ -890,7 +885,7 @@ footer {
       </div>
       <div class="collage-item">
         <video src="media/hardrock-nightlife.mp4" autoplay muted loop playsinline></video>
-        <div class="collage-ribbon"><span class="collage-ribbon-name">Events</span></div>
+        <div class="collage-ribbon"><span class="collage-ribbon-name">Entertainment</span></div>
         <div class="collage-data">
           <span class="collage-campaign">Hard Rock — Race Week '23</span>
           <div class="collage-detail">
@@ -939,7 +934,7 @@ footer {
       <!-- Duplicate for seamless loop -->
       <div class="collage-item">
         <video src="media/purge-visuals.mp4" autoplay muted loop playsinline></video>
-        <div class="collage-ribbon"><span class="collage-ribbon-name">Events</span></div>
+        <div class="collage-ribbon"><span class="collage-ribbon-name">Entertainment</span></div>
         <div class="collage-data">
           <span class="collage-campaign">PURGE — Tour</span>
           <div class="collage-detail">
@@ -950,8 +945,8 @@ footer {
         </div>
       </div>
       <div class="collage-item">
-        <img src="media/hardrock-raceweek.jpg" alt="DAER Dayclub" style="position: absolute; top: -30px; bottom: 26px; left: 0; right: 0; width: 100%; height: auto; object-fit: cover; object-position: center 100%;">
-        <div class="collage-ribbon"><span class="collage-ribbon-name">Events</span></div>
+        <img src="media/hardrock-raceweek.jpg" alt="DAER Dayclub" style="position: absolute; top: -30px; left: 0; width: 100%; height: 214px; object-fit: cover; object-position: center 100%;">
+        <div class="collage-ribbon"><span class="collage-ribbon-name">Entertainment</span></div>
         <div class="collage-data">
           <span class="collage-campaign">DAER — Dayclub</span>
           <div class="collage-detail">
@@ -963,7 +958,7 @@ footer {
       </div>
       <div class="collage-item">
         <video src="media/hardrock-nightlife.mp4" autoplay muted loop playsinline></video>
-        <div class="collage-ribbon"><span class="collage-ribbon-name">Events</span></div>
+        <div class="collage-ribbon"><span class="collage-ribbon-name">Entertainment</span></div>
         <div class="collage-data">
           <span class="collage-campaign">Hard Rock — Race Week '23</span>
           <div class="collage-detail">
@@ -1011,10 +1006,10 @@ footer {
       </div>
     </div>
     <div class="collage-track collage-track--reverse">
-      <!-- Row 2 — Gaming & Tech -->
+      <!-- Row 2 — Tech, Gaming & Transmedia -->
       <div class="collage-item">
         <video src="media/cinematic-trailer.mp4" autoplay muted loop playsinline></video>
-        <div class="collage-ribbon"><span class="collage-ribbon-name">Gaming</span></div>
+        <div class="collage-ribbon"><span class="collage-ribbon-name">Tech</span></div>
         <div class="collage-data">
           <span class="collage-campaign">Unioverse — Launch</span>
           <div class="collage-detail">
@@ -1062,7 +1057,7 @@ footer {
       </div>
       <div class="collage-item">
         <img src="media/unioverse-collectibles.jpg" alt="Unioverse Collectibles">
-        <div class="collage-ribbon"><span class="collage-ribbon-name">Gaming</span></div>
+        <div class="collage-ribbon"><span class="collage-ribbon-name">Transmedia</span></div>
         <div class="collage-data">
           <span class="collage-campaign">Unioverse — Collectibles</span>
           <div class="collage-detail">
@@ -1087,7 +1082,7 @@ footer {
       <!-- Duplicate for seamless loop -->
       <div class="collage-item">
         <video src="media/cinematic-trailer.mp4" autoplay muted loop playsinline></video>
-        <div class="collage-ribbon"><span class="collage-ribbon-name">Gaming</span></div>
+        <div class="collage-ribbon"><span class="collage-ribbon-name">Tech</span></div>
         <div class="collage-data">
           <span class="collage-campaign">Unioverse — Launch</span>
           <div class="collage-detail">
@@ -1135,7 +1130,7 @@ footer {
       </div>
       <div class="collage-item">
         <img src="media/unioverse-collectibles.jpg" alt="Unioverse Collectibles">
-        <div class="collage-ribbon"><span class="collage-ribbon-name">Gaming</span></div>
+        <div class="collage-ribbon"><span class="collage-ribbon-name">Transmedia</span></div>
         <div class="collage-data">
           <span class="collage-campaign">Unioverse — Collectibles</span>
           <div class="collage-detail">
@@ -1171,10 +1166,10 @@ footer {
         <div class="work-title-group">
           <span class="work-title">Sonar</span>
           <span class="work-descriptor">Operating system for freelancers</span>
+          <ul class="work-links">
+            <li><a href="waitlist.html" target="_blank" rel="noopener">Join waitlist <span class="arrow">&#8599;</span></a></li>
+          </ul>
         </div>
-        <ul class="work-links">
-          <li><a href="waitlist.html" target="_blank" rel="noopener">Join waitlist <span class="arrow">&#8599;</span></a></li>
-        </ul>
         <span class="work-category">SaaS</span>
         <span class="work-year">2026</span>
       </div>
@@ -1185,12 +1180,12 @@ footer {
         <div class="work-title-group">
           <span class="work-title">Bloom</span>
           <span class="work-descriptor">Voice-first AI answer engine</span>
+          <ul class="work-links">
+            <li><a href="https://askbloom.app" target="_blank" rel="noopener">Website <span class="arrow">&#8599;</span></a></li>
+            <li><a href="https://youtube.com/askbloomapp" target="_blank" rel="noopener">YouTube <span class="arrow">&#8599;</span></a></li>
+            <li><a href="https://askbloom.app" target="_blank" rel="noopener">App Store <span class="arrow">&#8599;</span></a></li>
+          </ul>
         </div>
-        <ul class="work-links">
-          <li><a href="https://askbloom.app" target="_blank" rel="noopener">Website <span class="arrow">&#8599;</span></a></li>
-          <li><a href="https://youtube.com/askbloomapp" target="_blank" rel="noopener">YouTube <span class="arrow">&#8599;</span></a></li>
-          <li><a href="https://askbloom.app" target="_blank" rel="noopener">App Store <span class="arrow">&#8599;</span></a></li>
-        </ul>
         <span class="work-category">Consumer App</span>
         <span class="work-year">2026</span>
       </div>
@@ -1201,12 +1196,12 @@ footer {
         <div class="work-title-group">
           <span class="work-title">Spekter Games</span>
           <span class="work-descriptor">Mobile-first gaming studio</span>
+          <ul class="work-links">
+            <li><a href="https://spekter.games" target="_blank" rel="noopener">Website <span class="arrow">&#8599;</span></a></li>
+            <li><a href="https://t.me/spekteragency_bot" target="_blank" rel="noopener">Play now <span class="arrow">&#8599;</span></a></li>
+            <li><a href="https://x.com/SpekterCity/status/2024183515676647529" target="_blank" rel="noopener">City beta <span class="arrow">&#8599;</span></a></li>
+          </ul>
         </div>
-        <ul class="work-links">
-          <li><a href="https://spekter.games" target="_blank" rel="noopener">Website <span class="arrow">&#8599;</span></a></li>
-          <li><a href="https://t.me/spekteragency_bot" target="_blank" rel="noopener">Play now <span class="arrow">&#8599;</span></a></li>
-          <li><a href="https://x.com/SpekterCity/status/2024183515676647529" target="_blank" rel="noopener">City beta <span class="arrow">&#8599;</span></a></li>
-        </ul>
         <span class="work-category">Mobile Games Studio</span>
         <span class="work-year">2025</span>
       </div>
@@ -1216,13 +1211,13 @@ footer {
         <span class="work-index">04</span>
         <div class="work-title-group">
           <span class="work-title">ChronoSpace</span>
-          <span class="work-descriptor">Applied AI research</span>
+          <span class="work-descriptor">4D capture & spatial AI</span>
+          <ul class="work-links">
+            <li><a href="https://chronospace.ai" target="_blank" rel="noopener">Website <span class="arrow">&#8599;</span></a></li>
+            <li><a href="https://www.linkedin.com/pulse/two-classes-spatial-ai-canvas-camera-paul-walborsky-afvac/" target="_blank" rel="noopener">Spatial AI <span class="arrow">&#8599;</span></a></li>
+            <li><a href="https://www.linkedin.com/pulse/robotics-has-its-gpt-moment-coming-missing-internet-paul-walborsky-mkbcc/" target="_blank" rel="noopener">Robotics <span class="arrow">&#8599;</span></a></li>
+          </ul>
         </div>
-        <ul class="work-links">
-          <li><a href="https://chronospace.ai" target="_blank" rel="noopener">Website <span class="arrow">&#8599;</span></a></li>
-          <li><a href="https://www.linkedin.com/pulse/two-classes-spatial-ai-canvas-camera-paul-walborsky-afvac/" target="_blank" rel="noopener">Spatial AI <span class="arrow">&#8599;</span></a></li>
-          <li><a href="https://www.linkedin.com/pulse/robotics-has-its-gpt-moment-coming-missing-internet-paul-walborsky-mkbcc/" target="_blank" rel="noopener">Robotics <span class="arrow">&#8599;</span></a></li>
-        </ul>
         <span class="work-category">AI Research Lab</span>
         <span class="work-year">2025</span>
       </div>
@@ -1231,14 +1226,14 @@ footer {
       <div class="work-link">
         <span class="work-index">05</span>
         <div class="work-title-group">
-          <span class="work-title">Random Games</span>
-          <span class="work-descriptor">Built marketing from zero to 100k users</span>
+          <span class="work-title">Unioverse</span>
+          <span class="work-descriptor">Built from zero to 100k users</span>
+          <ul class="work-links">
+            <li><a href="https://unioverse.com" target="_blank" rel="noopener">Website <span class="arrow">&#8599;</span></a></li>
+            <li><a href="https://www.businesswire.com/news/home/20220920005500/en/Random-Games-Raises-%247.6-Million-Seed-Round-to-Launch-the-Unioverse-Videogame-Franchise" target="_blank" rel="noopener">$7.6M raise <span class="arrow">&#8599;</span></a></li>
+            <li><a href="https://x.com/unio_coin/status/1837561632714867059" target="_blank" rel="noopener">$1.1M sale <span class="arrow">&#8599;</span></a></li>
+          </ul>
         </div>
-        <ul class="work-links">
-          <li><a href="https://unioverse.com" target="_blank" rel="noopener">Website <span class="arrow">&#8599;</span></a></li>
-          <li><a href="https://www.businesswire.com/news/home/20220920005500/en/Random-Games-Raises-%247.6-Million-Seed-Round-to-Launch-the-Unioverse-Videogame-Franchise" target="_blank" rel="noopener">$7.6M raise <span class="arrow">&#8599;</span></a></li>
-          <li><a href="https://x.com/unio_coin/status/1837561632714867059" target="_blank" rel="noopener">$1.1M sale <span class="arrow">&#8599;</span></a></li>
-        </ul>
         <span class="work-category">Transmedia IP</span>
         <span class="work-year">2022</span>
       </div>
@@ -1249,10 +1244,10 @@ footer {
         <div class="work-title-group">
           <span class="work-title">AITV</span>
           <span class="work-descriptor">Agency turned strategic acquisition</span>
+          <ul class="work-links">
+            <li><a href="https://aitv.agency" target="_blank" rel="noopener">Website <span class="arrow">&#8599;</span></a></li>
+          </ul>
         </div>
-        <ul class="work-links">
-          <li><a href="https://aitv.agency" target="_blank" rel="noopener">Website <span class="arrow">&#8599;</span></a></li>
-        </ul>
         <span class="work-category">Growth Agency</span>
         <span class="work-year">2020</span>
       </div>
