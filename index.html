@@ -38,8 +38,8 @@
   --space-sm: 1rem;
   --space-md: 2rem;
   --space-lg: 4rem;
-  --space-xl: 8rem;
-  --space-2xl: 12rem;
+  --space-xl: 5rem;
+  --space-2xl: 7rem;
 }
 
 html {
@@ -734,20 +734,13 @@ nav.scrolled {
 
 .testimonials-track {
   display: flex;
-  gap: var(--space-lg);
-  overflow-x: auto;
-  scroll-snap-type: x mandatory;
-  -webkit-overflow-scrolling: touch;
-  scrollbar-width: none;
-  padding-bottom: var(--space-sm);
+  flex-wrap: wrap;
+  gap: var(--space-md);
 }
 
-.testimonials-track::-webkit-scrollbar { display: none; }
-
 .testimonial-card {
-  flex-shrink: 0;
-  width: clamp(320px, 42vw, 560px);
-  scroll-snap-align: start;
+  flex: 1 1 calc(33.333% - var(--space-md));
+  min-width: 280px;
   padding: var(--space-md);
   border: 1px solid var(--text-3);
   border-radius: 0;
@@ -828,8 +821,21 @@ nav.scrolled {
 }
 
 @media (max-width: 768px) {
-  .testimonials-track { gap: 1.25rem; }
-  .testimonial-card { width: calc(100vw - 6rem); }
+  .testimonials-track {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    gap: 1.25rem;
+    padding-bottom: var(--space-sm);
+  }
+  .testimonials-track::-webkit-scrollbar { display: none; }
+  .testimonial-card {
+    flex: 0 0 calc(100vw - 6rem);
+    min-width: auto;
+    scroll-snap-align: start;
+  }
 }
 
 /* --- Contact / Footer --- */
