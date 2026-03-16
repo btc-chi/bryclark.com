@@ -1722,6 +1722,23 @@ const revealObserver = new IntersectionObserver((entries) => {
 
 reveals.forEach(el => revealObserver.observe(el));
 
+// --- Reveal all testimonial cards together when section enters view ---
+const testimonialsSection = document.querySelector('.testimonials');
+if (testimonialsSection) {
+  const testimonialsReveal = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        testimonialsSection.querySelectorAll('.testimonial-card.reveal').forEach(card => {
+          card.classList.add('visible');
+          revealObserver.unobserve(card);
+        });
+        testimonialsReveal.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  testimonialsReveal.observe(testimonialsSection);
+}
+
 // --- Nav Scroll Shrink ---
 const nav = document.querySelector('nav');
 let lastScroll = 0;
