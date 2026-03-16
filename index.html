@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
 <title>Bryan Clark — Product, Growth, Distribution</title>
 <meta name="description" content="Bryan Clark builds products and the distribution systems that help them grow. Product-led growth across gaming, AI, and consumer software.">
 <style>
@@ -427,6 +428,20 @@ nav.nav-hidden {
   color: rgba(240, 228, 203, 0.7);
 }
 
+.collage-link {
+  font-family: var(--mono);
+  font-size: 0.55rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--cream);
+  text-decoration: none;
+  opacity: 0.7;
+  transition: opacity 0.2s ease;
+  margin-top: 0.15rem;
+}
+.collage-link:hover { opacity: 1; color: var(--burnt-orange); }
+
 .collage-placeholder--1 { background: var(--dark); }
 .collage-placeholder--2 { background: var(--brown); }
 .collage-placeholder--3 { background: var(--brown-mid); }
@@ -438,10 +453,31 @@ nav.nav-hidden {
   .collage-item { width: 260px; height: 160px; }
 }
 
+/* Dismiss chevron — top-right indicator */
+.collage-item::after {
+  content: '';
+  position: absolute;
+  top: 0.6rem;
+  right: 0.6rem;
+  width: 7px;
+  height: 7px;
+  border-right: 1.5px solid rgba(240, 228, 203, 0.5);
+  border-bottom: 1.5px solid rgba(240, 228, 203, 0.5);
+  transform: rotate(45deg);
+  z-index: 3;
+  opacity: 0;
+  transition: opacity 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+  pointer-events: none;
+}
+@media (hover: hover) {
+  .collage-item:hover::after { opacity: 1; }
+}
+
 /* Touch active state — tap to reveal (no hover on mobile) */
 .collage-item.active img,
 .collage-item.active video { filter: brightness(0.65); }
 .collage-item.active .collage-data { opacity: 1; pointer-events: auto; }
+.collage-item.active::after { opacity: 1; }
 
 /* --- Section Label --- */
 .section-label {
@@ -564,10 +600,10 @@ nav.nav-hidden {
 
 .work-links li a .arrow {
   font-size: 0.65rem;
-  opacity: 0;
-  transform: translateX(-4px) translateY(-1px);
-  transition: opacity 0.25s ease, transform 0.25s ease;
-  color: var(--burnt-orange);
+  opacity: 1;
+  transform: translateY(-1px);
+  transition: transform 0.25s ease, color 0.25s ease;
+  color: var(--text-3);
 }
 
 .work-links li a:hover {
@@ -575,8 +611,8 @@ nav.nav-hidden {
 }
 
 .work-links li a:hover .arrow {
-  opacity: 1;
-  transform: translateX(0) translateY(-1px);
+  color: var(--burnt-orange);
+  transform: translateY(-2px);
 }
 
 /* --- Marquee Divider --- */
@@ -1245,7 +1281,7 @@ footer {
         </div>
       </div>
       <div class="collage-item">
-        <video src="media/reyu-portal.mp4" autoplay muted loop playsinline style="object-position: center 0%;"></video>
+        <video src="media/reyu-portal.mp4" autoplay muted loop playsinline style="object-position: center center; transform: scale(0.75); transform-origin: center center;"></video>
         <div class="collage-data">
           <span class="collage-industry">Gaming</span>
           <span class="collage-campaign">Unioverse — Reyu Drop</span>
@@ -1273,7 +1309,50 @@ footer {
         </div>
       </div>
       <div class="collage-item">
-        <img src="media/unioverse-anthology.jpg" alt="Unioverse Anthology" style="object-position: center 75%;">
+        <video src="media/hoverdrome-tourney.mp4" autoplay muted loop playsinline></video>
+        <div class="collage-data">
+          <span class="collage-industry">Gaming</span>
+          <span class="collage-campaign">Unioverse — Hoverdrome Tourney</span>
+          <div class="collage-detail">
+            <span class="collage-channels">Esports · Community</span>
+            <div class="collage-metrics">
+              <span class="collage-metric">Events<b>2</b></span>
+              <span class="collage-metric">Format<b>Esports</b></span>
+            </div>
+          </div>
+          <a href="https://www.youtube.com/watch?v=Bca61-RowT0" target="_blank" rel="noopener" class="collage-link">Watch &#8599;</a>
+        </div>
+      </div>
+      <div class="collage-item">
+        <video src="media/proving-grounds.mp4" autoplay muted loop playsinline></video>
+        <div class="collage-data">
+          <span class="collage-industry">Gaming</span>
+          <span class="collage-campaign">Unioverse — Proving Grounds</span>
+          <div class="collage-detail">
+            <span class="collage-channels">UGC · Community · Speedrun</span>
+            <div class="collage-metrics">
+              <span class="collage-metric">Type<b>UGC</b></span>
+              <span class="collage-metric">Format<b>Speedrun</b></span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="collage-item">
+        <video src="media/hoverdrome-trailer.mp4" autoplay muted loop playsinline></video>
+        <div class="collage-data">
+          <span class="collage-industry">Gaming</span>
+          <span class="collage-campaign">Unioverse — Hoverdrome</span>
+          <div class="collage-detail">
+            <span class="collage-channels">Paid Social · Display</span>
+            <div class="collage-metrics">
+              <span class="collage-metric">CPI<b>$0.10</b></span>
+              <span class="collage-metric">CR<b>3.6%</b></span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="collage-item">
+        <img src="media/unioverse-anthology.jpg" alt="Unioverse Anthology" style="object-position: center 40%;">
         <div class="collage-data">
           <span class="collage-industry">Transmedia</span>
           <span class="collage-campaign">Unioverse — Anthology</span>
@@ -1287,7 +1366,7 @@ footer {
         </div>
       </div>
       <div class="collage-item">
-        <img src="media/unioverse-comics.webp" alt="Unioverse Comics" style="position:absolute; top:-665px; left:-280px; width:600px; height:auto; object-fit:initial;">
+        <video src="media/comic-trailer.mp4" autoplay muted loop playsinline></video>
         <div class="collage-data">
           <span class="collage-industry">Transmedia</span>
           <span class="collage-campaign">Unioverse — Comics</span>
@@ -1386,7 +1465,7 @@ footer {
         </div>
       </div>
       <div class="collage-item">
-        <video src="media/reyu-portal.mp4" autoplay muted loop playsinline style="object-position: center 0%;"></video>
+        <video src="media/reyu-portal.mp4" autoplay muted loop playsinline style="object-position: center center; transform: scale(0.75); transform-origin: center center;"></video>
         <div class="collage-data">
           <span class="collage-industry">Gaming</span>
           <span class="collage-campaign">Unioverse — Reyu Drop</span>
@@ -1414,7 +1493,50 @@ footer {
         </div>
       </div>
       <div class="collage-item">
-        <img src="media/unioverse-anthology.jpg" alt="Unioverse Anthology" style="object-position: center 75%;">
+        <video src="media/hoverdrome-tourney.mp4" autoplay muted loop playsinline></video>
+        <div class="collage-data">
+          <span class="collage-industry">Gaming</span>
+          <span class="collage-campaign">Unioverse — Hoverdrome Tourney</span>
+          <div class="collage-detail">
+            <span class="collage-channels">Esports · Community</span>
+            <div class="collage-metrics">
+              <span class="collage-metric">Events<b>2</b></span>
+              <span class="collage-metric">Format<b>Esports</b></span>
+            </div>
+          </div>
+          <a href="https://www.youtube.com/watch?v=Bca61-RowT0" target="_blank" rel="noopener" class="collage-link">Watch &#8599;</a>
+        </div>
+      </div>
+      <div class="collage-item">
+        <video src="media/proving-grounds.mp4" autoplay muted loop playsinline></video>
+        <div class="collage-data">
+          <span class="collage-industry">Gaming</span>
+          <span class="collage-campaign">Unioverse — Proving Grounds</span>
+          <div class="collage-detail">
+            <span class="collage-channels">UGC · Community · Speedrun</span>
+            <div class="collage-metrics">
+              <span class="collage-metric">Type<b>UGC</b></span>
+              <span class="collage-metric">Format<b>Speedrun</b></span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="collage-item">
+        <video src="media/hoverdrome-trailer.mp4" autoplay muted loop playsinline></video>
+        <div class="collage-data">
+          <span class="collage-industry">Gaming</span>
+          <span class="collage-campaign">Unioverse — Hoverdrome</span>
+          <div class="collage-detail">
+            <span class="collage-channels">Paid Social · Display</span>
+            <div class="collage-metrics">
+              <span class="collage-metric">CPI<b>$0.10</b></span>
+              <span class="collage-metric">CR<b>3.6%</b></span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="collage-item">
+        <img src="media/unioverse-anthology.jpg" alt="Unioverse Anthology" style="object-position: center 40%;">
         <div class="collage-data">
           <span class="collage-industry">Transmedia</span>
           <span class="collage-campaign">Unioverse — Anthology</span>
@@ -1428,7 +1550,7 @@ footer {
         </div>
       </div>
       <div class="collage-item">
-        <img src="media/unioverse-comics.webp" alt="Unioverse Comics" style="position:absolute; top:-665px; left:-280px; width:600px; height:auto; object-fit:initial;">
+        <video src="media/comic-trailer.mp4" autoplay muted loop playsinline></video>
         <div class="collage-data">
           <span class="collage-industry">Transmedia</span>
           <span class="collage-campaign">Unioverse — Comics</span>
@@ -1484,11 +1606,11 @@ footer {
           <span class="work-title">Bloom</span>
           <span class="work-descriptor">Voice-first AI answer engine</span>
         </div>
+        <span class="work-category">Consumer App</span>
+        <span class="work-year">2026</span>
         <ul class="work-links">
           <li><a href="https://askbloom.app" target="_blank" rel="noopener">App Store <span class="arrow">&#8599;</span></a></li>
         </ul>
-        <span class="work-category">Consumer App</span>
-        <span class="work-year">2026</span>
       </div>
     </li>
     <li class="work-item reveal reveal-delay-3">
@@ -1498,11 +1620,11 @@ footer {
           <span class="work-title">Spekter Games</span>
           <span class="work-descriptor">Mobile gaming studio</span>
         </div>
+        <span class="work-category">Games Studio</span>
+        <span class="work-year">2025</span>
         <ul class="work-links">
           <li><a href="https://t.me/spekteragency_bot" target="_blank" rel="noopener">Play now <span class="arrow">&#8599;</span></a></li>
         </ul>
-        <span class="work-category">Games Studio</span>
-        <span class="work-year">2025</span>
       </div>
     </li>
     <li class="work-item reveal reveal-delay-4">
@@ -1512,11 +1634,11 @@ footer {
           <span class="work-title">ChronoSpace</span>
           <span class="work-descriptor">4D information capture technology</span>
         </div>
+        <span class="work-category">AI Research Lab</span>
+        <span class="work-year">2025</span>
         <ul class="work-links">
           <li><a href="https://www.linkedin.com/pulse/two-classes-spatial-ai-canvas-camera-paul-walborsky-afvac/" target="_blank" rel="noopener">Spatial AI <span class="arrow">&#8599;</span></a></li>
         </ul>
-        <span class="work-category">AI Research Lab</span>
-        <span class="work-year">2025</span>
       </div>
     </li>
     <li class="work-item reveal">
@@ -1526,11 +1648,11 @@ footer {
           <span class="work-title">Unioverse</span>
           <span class="work-descriptor">Sci-fi universe full of comics, stories, and games</span>
         </div>
+        <span class="work-category">Transmedia IP</span>
+        <span class="work-year">2022</span>
         <ul class="work-links">
           <li><a href="https://unioverse.com" target="_blank" rel="noopener">Website <span class="arrow">&#8599;</span></a></li>
         </ul>
-        <span class="work-category">Transmedia IP</span>
-        <span class="work-year">2022</span>
       </div>
     </li>
     <li class="work-item reveal">
@@ -1540,11 +1662,11 @@ footer {
           <span class="work-title">AITV</span>
           <span class="work-descriptor">Agency turned strategic acquisition</span>
         </div>
+        <span class="work-category">Growth Agency</span>
+        <span class="work-year">2020</span>
         <ul class="work-links">
           <li><a href="https://aitv.agency" target="_blank" rel="noopener">Website <span class="arrow">&#8599;</span></a></li>
         </ul>
-        <span class="work-category">Growth Agency</span>
-        <span class="work-year">2020</span>
       </div>
     </li>
   </ul>
