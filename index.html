@@ -441,9 +441,19 @@ nav.scrolled {
 @media (max-width: 768px) {
   .collage-item { width: 260px; height: 160px; }
   .collage-ribbon { height: 22px; }
-  .collage-item:hover .collage-ribbon { height: 62px; }
+  .collage-item:hover .collage-ribbon,
+  .collage-item.active .collage-ribbon { height: 62px; }
   .collage-data { height: 40px; bottom: 22px; }
+  .collage-item.active img,
+  .collage-item.active video { filter: brightness(0.65); }
+  .collage-item.active .collage-data { opacity: 1; pointer-events: auto; }
 }
+
+/* Mobile active state (mirrors hover for touch) */
+.collage-item.active .collage-ribbon { height: 84px; }
+.collage-item.active img,
+.collage-item.active video { filter: brightness(0.65); }
+.collage-item.active .collage-data { opacity: 1; pointer-events: auto; }
 
 /* --- Section Label --- */
 .section-label {
@@ -697,6 +707,116 @@ nav.scrolled {
   text-transform: uppercase;
   color: var(--text-3);
   margin-top: var(--space-xs);
+}
+
+/* --- Testimonials --- */
+.testimonials {
+  padding: var(--space-2xl) var(--space-md) var(--space-xl);
+}
+
+.testimonials-label {
+  font-family: var(--mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--text-3);
+  margin-bottom: var(--space-lg);
+}
+
+.testimonials-track {
+  display: flex;
+  gap: var(--space-lg);
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  padding-bottom: var(--space-sm);
+}
+
+.testimonials-track::-webkit-scrollbar { display: none; }
+
+.testimonial-card {
+  flex-shrink: 0;
+  width: 360px;
+  scroll-snap-align: start;
+  padding: var(--space-md);
+  border: 1px solid var(--text-3);
+  border-radius: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.testimonial-header {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+.testimonial-avatar {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  object-fit: cover;
+  background: var(--text-3);
+  flex-shrink: 0;
+}
+
+.testimonial-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.testimonial-name {
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--text-1);
+}
+
+.testimonial-title {
+  font-family: var(--mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.05em;
+  color: var(--text-3);
+  text-transform: uppercase;
+}
+
+.testimonial-quote {
+  font-size: 0.85rem;
+  line-height: 1.55;
+  color: var(--text-2);
+  display: -webkit-box;
+  -webkit-line-clamp: 5;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.testimonial-quote.expanded {
+  -webkit-line-clamp: unset;
+}
+
+.testimonial-toggle {
+  font-family: var(--mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--burnt-orange);
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 0;
+  text-align: left;
+}
+
+.testimonial-toggle:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+  .testimonial-card { width: 300px; }
 }
 
 /* --- Contact / Footer --- */
@@ -1474,6 +1594,79 @@ footer {
   </div>
 </section>
 
+<!-- Testimonials -->
+<section class="testimonials" id="testimonials">
+  <p class="testimonials-label reveal">What others say</p>
+  <div class="testimonials-track">
+    <div class="testimonial-card reveal reveal-delay-1">
+      <div class="testimonial-header">
+        <div class="testimonial-avatar"></div>
+        <div class="testimonial-info">
+          <span class="testimonial-name">Brent Friedman</span>
+          <span class="testimonial-title">Writer &amp; Showrunner · Unioverse</span>
+        </div>
+      </div>
+      <p class="testimonial-quote">"Placeholder testimonial from Brent — replace with actual LinkedIn recommendation."</p>
+      <button class="testimonial-toggle" onclick="this.previousElementSibling.classList.toggle('expanded'); this.textContent = this.previousElementSibling.classList.contains('expanded') ? 'Show less' : 'See more';">See more</button>
+    </div>
+    <div class="testimonial-card reveal reveal-delay-2">
+      <div class="testimonial-header">
+        <div class="testimonial-avatar"></div>
+        <div class="testimonial-info">
+          <span class="testimonial-name">Tony Harmon</span>
+          <span class="testimonial-title">Ex-Nintendo · Game Industry Veteran</span>
+        </div>
+      </div>
+      <p class="testimonial-quote">"Placeholder testimonial from Tony — replace with actual LinkedIn recommendation."</p>
+      <button class="testimonial-toggle" onclick="this.previousElementSibling.classList.toggle('expanded'); this.textContent = this.previousElementSibling.classList.contains('expanded') ? 'Show less' : 'See more';">See more</button>
+    </div>
+    <div class="testimonial-card reveal reveal-delay-3">
+      <div class="testimonial-header">
+        <div class="testimonial-avatar"></div>
+        <div class="testimonial-info">
+          <span class="testimonial-name">White Ridgeway</span>
+          <span class="testimonial-title">CTO · 20+ Years in Games</span>
+        </div>
+      </div>
+      <p class="testimonial-quote">"Placeholder testimonial from White — replace with actual LinkedIn recommendation."</p>
+      <button class="testimonial-toggle" onclick="this.previousElementSibling.classList.toggle('expanded'); this.textContent = this.previousElementSibling.classList.contains('expanded') ? 'Show less' : 'See more';">See more</button>
+    </div>
+    <div class="testimonial-card reveal">
+      <div class="testimonial-header">
+        <div class="testimonial-avatar"></div>
+        <div class="testimonial-info">
+          <span class="testimonial-name">Placeholder Name</span>
+          <span class="testimonial-title">Title · Company</span>
+        </div>
+      </div>
+      <p class="testimonial-quote">"Placeholder testimonial — replace with actual LinkedIn recommendation."</p>
+      <button class="testimonial-toggle" onclick="this.previousElementSibling.classList.toggle('expanded'); this.textContent = this.previousElementSibling.classList.contains('expanded') ? 'Show less' : 'See more';">See more</button>
+    </div>
+    <div class="testimonial-card reveal">
+      <div class="testimonial-header">
+        <div class="testimonial-avatar"></div>
+        <div class="testimonial-info">
+          <span class="testimonial-name">Placeholder Name</span>
+          <span class="testimonial-title">Title · Company</span>
+        </div>
+      </div>
+      <p class="testimonial-quote">"Placeholder testimonial — replace with actual LinkedIn recommendation."</p>
+      <button class="testimonial-toggle" onclick="this.previousElementSibling.classList.toggle('expanded'); this.textContent = this.previousElementSibling.classList.contains('expanded') ? 'Show less' : 'See more';">See more</button>
+    </div>
+    <div class="testimonial-card reveal">
+      <div class="testimonial-header">
+        <div class="testimonial-avatar"></div>
+        <div class="testimonial-info">
+          <span class="testimonial-name">Placeholder Name</span>
+          <span class="testimonial-title">Title · Company</span>
+        </div>
+      </div>
+      <p class="testimonial-quote">"Placeholder testimonial — replace with actual LinkedIn recommendation."</p>
+      <button class="testimonial-toggle" onclick="this.previousElementSibling.classList.toggle('expanded'); this.textContent = this.previousElementSibling.classList.contains('expanded') ? 'Show less' : 'See more';">See more</button>
+    </div>
+  </div>
+</section>
+
 <!-- Footer / Contact -->
 <footer id="contact">
   <p class="section-label reveal" style="color: rgba(240,228,203,0.3);">Get in touch</p>
@@ -1532,6 +1725,47 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
       target.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
   });
+});
+
+// --- Mobile Collage: Tap to Toggle ---
+const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+if (isTouchDevice) {
+  document.querySelectorAll('.collage-item').forEach(item => {
+    item.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const wasActive = item.classList.contains('active');
+      // Close all other active items
+      document.querySelectorAll('.collage-item.active').forEach(i => i.classList.remove('active'));
+      // Toggle this one
+      if (!wasActive) {
+        item.classList.add('active');
+        // Pause the track scroll
+        item.closest('.collage-track').style.animationPlayState = 'paused';
+      } else {
+        // Resume scroll
+        item.closest('.collage-track').style.animationPlayState = '';
+      }
+    });
+  });
+  // Tap outside collage to close
+  document.addEventListener('click', () => {
+    document.querySelectorAll('.collage-item.active').forEach(i => {
+      i.classList.remove('active');
+      i.closest('.collage-track').style.animationPlayState = '';
+    });
+  });
+}
+
+// --- Mobile Video Autoplay Nudge ---
+document.querySelectorAll('.collage-item video').forEach(vid => {
+  vid.play().catch(() => {});
+  // Also retry on intersection
+  const videoObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) entry.target.play().catch(() => {});
+    });
+  }, { threshold: 0.1 });
+  videoObserver.observe(vid);
 });
 </script>
 
