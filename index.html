@@ -303,7 +303,8 @@ nav.scrolled {
   height: 100%;
   object-fit: cover;
   display: block;
-  transition: filter 0.4s ease;
+  transition: filter 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: filter;
 }
 
 @media (hover: hover) {
@@ -324,8 +325,9 @@ nav.scrolled {
   height: 26px;
   display: flex;
   align-items: center;
-  transition: height 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+  transition: height 0.3s cubic-bezier(0.22, 1, 0.36, 1);
   overflow: hidden;
+  will-change: height;
 }
 
 @media (hover: hover) {
@@ -360,7 +362,8 @@ nav.scrolled {
   gap: 0.15rem;
   opacity: 0;
   transform: translateY(6px);
-  transition: opacity 0.3s ease 0.08s, transform 0.3s ease 0.08s;
+  transition: opacity 0.3s cubic-bezier(0.22, 1, 0.36, 1) 0.05s, transform 0.3s cubic-bezier(0.22, 1, 0.36, 1) 0.05s;
+  will-change: opacity, transform;
 }
 
 @media (hover: hover) {
@@ -1263,7 +1266,7 @@ footer {
         </div>
       </div>
       <div class="collage-item">
-        <img src="media/unioverse-comics.jpg" alt="Unioverse Comics">
+        <img src="media/unioverse-comics.webp" alt="Unioverse Comics" style="object-position: center 75%;">
         <div class="collage-ribbon"><span class="collage-ribbon-name">Transmedia</span></div>
         <div class="collage-data">
           <span class="collage-campaign">Unioverse — Comics</span>
@@ -1404,7 +1407,7 @@ footer {
         </div>
       </div>
       <div class="collage-item">
-        <img src="media/unioverse-comics.jpg" alt="Unioverse Comics">
+        <img src="media/unioverse-comics.webp" alt="Unioverse Comics" style="object-position: center 75%;">
         <div class="collage-ribbon"><span class="collage-ribbon-name">Transmedia</span></div>
         <div class="collage-data">
           <span class="collage-campaign">Unioverse — Comics</span>
@@ -1738,23 +1741,54 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
   const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
   if (!isTouchDevice) return;
 
+  // Block native video tap-to-play/pause on mobile
+  document.querySelectorAll('.collage-item video').forEach(vid => {
+    vid.addEventListener('click', e => { e.preventDefault(); e.stopPropagation(); });
+    vid.removeAttribute('controls');
+  });
+
+  function closeItem(item) {
+    item.classList.remove('active');
+    // Resume video if it has one
+    const vid = item.querySelector('video');
+    if (vid) { vid.muted = true; vid.play().catch(() => {}); }
+  }
+
   function closeAll() {
-    document.querySelectorAll('.collage-item.active').forEach(item => {
-      item.classList.remove('active');
-    });
+    document.querySelectorAll('.collage-item.active').forEach(closeItem);
     document.querySelectorAll('.collage-track').forEach(track => {
       track.style.animationPlayState = '';
     });
   }
 
+  // Track touch position to distinguish taps from swipes
+  let touchStartX = 0;
+  let touchStartY = 0;
+
   document.querySelectorAll('.collage-item').forEach(item => {
+    item.addEventListener('touchstart', (e) => {
+      touchStartX = e.touches[0].clientX;
+      touchStartY = e.touches[0].clientY;
+    }, { passive: true });
+
     item.addEventListener('touchend', (e) => {
-      e.preventDefault(); // Prevent ghost click and sticky :hover
+      // Ignore swipes (only respond to taps)
+      const dx = Math.abs(e.changedTouches[0].clientX - touchStartX);
+      const dy = Math.abs(e.changedTouches[0].clientY - touchStartY);
+      if (dx > 15 || dy > 15) return; // Was a swipe, ignore
+
+      e.preventDefault();
+      e.stopPropagation();
+
       const wasActive = item.classList.contains('active');
       closeAll();
+
       if (!wasActive) {
         item.classList.add('active');
         item.closest('.collage-track').style.animationPlayState = 'paused';
+        // Pause video if it has one
+        const vid = item.querySelector('video');
+        if (vid) vid.pause();
       }
     }, { passive: false });
   });
