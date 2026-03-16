@@ -315,62 +315,37 @@ nav.scrolled {
   }
 }
 
-/* Persistent bottom ribbon — industry label */
-.collage-ribbon {
+/* Hover overlay — industry, campaign, channels, metrics */
+.collage-data {
   position: absolute;
   bottom: 0;
   left: 0;
   right: 0;
-  background: var(--dark);
-  padding: 0 0.75rem;
-  height: 26px;
-  display: flex;
-  align-items: center;
-  transition: height 0.3s cubic-bezier(0.22, 1, 0.36, 1);
-  overflow: hidden;
-  will-change: height;
-}
-
-@media (hover: hover) {
-  .collage-item:hover .collage-ribbon {
-    height: 84px;
-  }
-}
-
-.collage-ribbon-name {
-  font-family: var(--mono);
-  font-size: 0.6rem;
-  font-weight: 700;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--burnt-orange);
-  white-space: nowrap;
-}
-
-/* Hover detail panel — campaign, channels, metrics */
-.collage-data {
-  position: absolute;
-  bottom: 26px;
-  left: 0;
-  right: 0;
-  height: 58px;
-  background: var(--dark);
+  background: linear-gradient(to top, rgba(59,42,42,0.95) 60%, transparent);
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  padding: 0 0.75rem;
-  gap: 0.15rem;
+  justify-content: flex-end;
+  padding: 0.75rem;
+  gap: 0.25rem;
   opacity: 0;
-  transform: translateY(6px);
-  transition: opacity 0.3s cubic-bezier(0.22, 1, 0.36, 1) 0.05s, transform 0.3s cubic-bezier(0.22, 1, 0.36, 1) 0.05s;
-  will-change: opacity, transform;
+  transition: opacity 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: opacity;
 }
 
 @media (hover: hover) {
   .collage-item:hover .collage-data {
     opacity: 1;
-    transform: translateY(0);
   }
+}
+
+.collage-industry {
+  font-family: var(--mono);
+  font-size: 0.55rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--burnt-orange);
+  white-space: nowrap;
 }
 
 .collage-campaign {
@@ -451,19 +426,12 @@ nav.scrolled {
 
 @media (max-width: 768px) {
   .collage-item { width: 260px; height: 160px; }
-  .collage-ribbon { height: 22px; }
-  .collage-data { height: 40px; bottom: 22px; }
 }
 
 /* Touch active state — tap to reveal (no hover on mobile) */
 .collage-item.active img,
 .collage-item.active video { filter: brightness(0.65); }
-.collage-item.active .collage-ribbon { height: 84px; }
-.collage-item.active .collage-data { opacity: 1; transform: translateY(0); pointer-events: auto; }
-@media (max-width: 768px) {
-  .collage-item.active .collage-ribbon { height: 50%; }
-  .collage-item.active .collage-data { height: 52px; bottom: 24px; }
-}
+.collage-item.active .collage-data { opacity: 1; pointer-events: auto; }
 
 /* --- Section Label --- */
 .section-label {
@@ -1040,8 +1008,8 @@ footer {
       <!-- Row 1 — Entertainment & Creative -->
       <div class="collage-item">
         <video src="media/purge-visuals.mp4" autoplay muted loop playsinline></video>
-        <div class="collage-ribbon"><span class="collage-ribbon-name">Events</span></div>
         <div class="collage-data">
+          <span class="collage-industry">Events</span>
           <span class="collage-campaign">PURGE — Tour</span>
           <div class="collage-detail">
             <span class="collage-channels">Paid Social · Strategic Organic</span>
@@ -1054,8 +1022,8 @@ footer {
       </div>
       <div class="collage-item">
         <img src="media/hardrock-raceweek.jpg" alt="DAER Dayclub" style="position: absolute; top: -30px; left: 0; width: 100%; height: 214px; object-fit: cover; object-position: center 100%;">
-        <div class="collage-ribbon"><span class="collage-ribbon-name">Events</span></div>
         <div class="collage-data">
+          <span class="collage-industry">Events</span>
           <span class="collage-campaign">DAER — Dayclub</span>
           <div class="collage-detail">
             <span class="collage-channels">Paid Social · Display · Email</span>
@@ -1068,8 +1036,8 @@ footer {
       </div>
       <div class="collage-item">
         <video src="media/hardrock-nightlife.mp4" autoplay muted loop playsinline></video>
-        <div class="collage-ribbon"><span class="collage-ribbon-name">Events</span></div>
         <div class="collage-data">
+          <span class="collage-industry">Events</span>
           <span class="collage-campaign">Hard Rock — Race Week '23</span>
           <div class="collage-detail">
             <span class="collage-channels">Paid Social · Display</span>
@@ -1082,8 +1050,8 @@ footer {
       </div>
       <div class="collage-item">
         <img src="media/s-deniro-registered.jpg" alt="S. Deniro — Yours Truly">
-        <div class="collage-ribbon"><span class="collage-ribbon-name">Creative</span></div>
         <div class="collage-data">
+          <span class="collage-industry">Creative</span>
           <span class="collage-campaign">S. Deniro — Yours Truly</span>
           <div class="collage-detail">
             <span class="collage-channels">Strategic Organic · Paid Social</span>
@@ -1096,8 +1064,8 @@ footer {
       </div>
       <div class="collage-item">
         <video src="media/mavv-visuals.mp4" autoplay muted loop playsinline></video>
-        <div class="collage-ribbon"><span class="collage-ribbon-name">Creative</span></div>
         <div class="collage-data">
+          <span class="collage-industry">Creative</span>
           <span class="collage-campaign">MAVV — Campaign</span>
           <div class="collage-detail">
             <span class="collage-channels">Paid Social · Strategic Organic</span>
@@ -1110,8 +1078,8 @@ footer {
       </div>
       <div class="collage-item">
         <video src="media/erika-tham-ep.mp4" autoplay muted loop playsinline></video>
-        <div class="collage-ribbon"><span class="collage-ribbon-name">Creative</span></div>
         <div class="collage-data">
+          <span class="collage-industry">Creative</span>
           <span class="collage-campaign">Erika Tham — EP</span>
           <div class="collage-detail">
             <span class="collage-channels">Paid Social · Email</span>
@@ -1125,8 +1093,8 @@ footer {
       <!-- Duplicate for seamless loop -->
       <div class="collage-item">
         <video src="media/purge-visuals.mp4" autoplay muted loop playsinline></video>
-        <div class="collage-ribbon"><span class="collage-ribbon-name">Events</span></div>
         <div class="collage-data">
+          <span class="collage-industry">Events</span>
           <span class="collage-campaign">PURGE — Tour</span>
           <div class="collage-detail">
             <span class="collage-channels">Paid Social · Strategic Organic</span>
@@ -1139,8 +1107,8 @@ footer {
       </div>
       <div class="collage-item">
         <img src="media/hardrock-raceweek.jpg" alt="DAER Dayclub" style="position: absolute; top: -30px; left: 0; width: 100%; height: 214px; object-fit: cover; object-position: center 100%;">
-        <div class="collage-ribbon"><span class="collage-ribbon-name">Events</span></div>
         <div class="collage-data">
+          <span class="collage-industry">Events</span>
           <span class="collage-campaign">DAER — Dayclub</span>
           <div class="collage-detail">
             <span class="collage-channels">Paid Social · Display · Email</span>
@@ -1153,8 +1121,8 @@ footer {
       </div>
       <div class="collage-item">
         <video src="media/hardrock-nightlife.mp4" autoplay muted loop playsinline></video>
-        <div class="collage-ribbon"><span class="collage-ribbon-name">Events</span></div>
         <div class="collage-data">
+          <span class="collage-industry">Events</span>
           <span class="collage-campaign">Hard Rock — Race Week '23</span>
           <div class="collage-detail">
             <span class="collage-channels">Paid Social · Display</span>
@@ -1167,8 +1135,8 @@ footer {
       </div>
       <div class="collage-item">
         <img src="media/s-deniro-registered.jpg" alt="S. Deniro — Yours Truly">
-        <div class="collage-ribbon"><span class="collage-ribbon-name">Creative</span></div>
         <div class="collage-data">
+          <span class="collage-industry">Creative</span>
           <span class="collage-campaign">S. Deniro — Yours Truly</span>
           <div class="collage-detail">
             <span class="collage-channels">Strategic Organic · Paid Social</span>
@@ -1181,8 +1149,8 @@ footer {
       </div>
       <div class="collage-item">
         <video src="media/mavv-visuals.mp4" autoplay muted loop playsinline></video>
-        <div class="collage-ribbon"><span class="collage-ribbon-name">Creative</span></div>
         <div class="collage-data">
+          <span class="collage-industry">Creative</span>
           <span class="collage-campaign">MAVV — Campaign</span>
           <div class="collage-detail">
             <span class="collage-channels">Paid Social · Strategic Organic</span>
@@ -1195,8 +1163,8 @@ footer {
       </div>
       <div class="collage-item">
         <video src="media/erika-tham-ep.mp4" autoplay muted loop playsinline></video>
-        <div class="collage-ribbon"><span class="collage-ribbon-name">Creative</span></div>
         <div class="collage-data">
+          <span class="collage-industry">Creative</span>
           <span class="collage-campaign">Erika Tham — EP</span>
           <div class="collage-detail">
             <span class="collage-channels">Paid Social · Email</span>
@@ -1212,8 +1180,8 @@ footer {
       <!-- Row 2 — Gaming, Transmedia & Creative -->
       <div class="collage-item">
         <video src="media/cinematic-trailer.mp4" autoplay muted loop playsinline style="transform: scale(1.35); transform-origin: center center;"></video>
-        <div class="collage-ribbon"><span class="collage-ribbon-name">Gaming</span></div>
         <div class="collage-data">
+          <span class="collage-industry">Gaming</span>
           <span class="collage-campaign">Unioverse — Launch</span>
           <div class="collage-detail">
             <span class="collage-channels">Paid Social · Display</span>
@@ -1226,8 +1194,8 @@ footer {
       </div>
       <div class="collage-item">
         <video src="media/spekter-openbeta.mp4" autoplay muted loop playsinline></video>
-        <div class="collage-ribbon"><span class="collage-ribbon-name">Gaming</span></div>
         <div class="collage-data">
+          <span class="collage-industry">Gaming</span>
           <span class="collage-campaign">Spekter Agency — Open Beta</span>
           <div class="collage-detail">
             <span class="collage-channels">Paid Social · ASO · Growth Tactics</span>
@@ -1240,8 +1208,8 @@ footer {
       </div>
       <div class="collage-item">
         <video src="media/spekter-city.mp4" autoplay muted loop playsinline></video>
-        <div class="collage-ribbon"><span class="collage-ribbon-name">Gaming</span></div>
         <div class="collage-data">
+          <span class="collage-industry">Gaming</span>
           <span class="collage-campaign">Spekter City — Closed Beta</span>
           <div class="collage-detail">
             <span class="collage-channels">Paid Social · Community · ASO</span>
@@ -1254,8 +1222,8 @@ footer {
       </div>
       <div class="collage-item">
         <img src="media/krisha-render.jpg" alt="Unioverse — Krishah" style="object-position: center 0%;">
-        <div class="collage-ribbon"><span class="collage-ribbon-name">Gaming</span></div>
         <div class="collage-data">
+          <span class="collage-industry">Gaming</span>
           <span class="collage-campaign">Unioverse — Krishah Drop</span>
           <div class="collage-detail">
             <span class="collage-channels">Paid Social · Strategic Organic</span>
@@ -1268,8 +1236,8 @@ footer {
       </div>
       <div class="collage-item">
         <video src="media/reyu-portal.mp4" autoplay muted loop playsinline style="object-position: center 0%;"></video>
-        <div class="collage-ribbon"><span class="collage-ribbon-name">Gaming</span></div>
         <div class="collage-data">
+          <span class="collage-industry">Gaming</span>
           <span class="collage-campaign">Unioverse — Reyu Drop</span>
           <div class="collage-detail">
             <span class="collage-channels">Paid Social · Strategic Organic</span>
@@ -1282,8 +1250,8 @@ footer {
       </div>
       <div class="collage-item">
         <video src="media/tor-animation.mp4" autoplay muted loop playsinline></video>
-        <div class="collage-ribbon"><span class="collage-ribbon-name">Gaming</span></div>
         <div class="collage-data">
+          <span class="collage-industry">Gaming</span>
           <span class="collage-campaign">Unioverse — Tor Drop</span>
           <div class="collage-detail">
             <span class="collage-channels">Paid Social · Strategic Organic</span>
@@ -1296,8 +1264,8 @@ footer {
       </div>
       <div class="collage-item">
         <img src="media/unioverse-anthology.jpg" alt="Unioverse Anthology">
-        <div class="collage-ribbon"><span class="collage-ribbon-name">Transmedia</span></div>
         <div class="collage-data">
+          <span class="collage-industry">Transmedia</span>
           <span class="collage-campaign">Unioverse — Anthology</span>
           <div class="collage-detail">
             <span class="collage-channels">Strategic Organic</span>
@@ -1310,8 +1278,8 @@ footer {
       </div>
       <div class="collage-item">
         <img src="media/unioverse-comics.webp" alt="Unioverse Comics" style="position:absolute; top:-640px; left:-130px; width:600px; height:auto; object-fit:initial;">
-        <div class="collage-ribbon"><span class="collage-ribbon-name">Transmedia</span></div>
         <div class="collage-data">
+          <span class="collage-industry">Transmedia</span>
           <span class="collage-campaign">Unioverse — Comics</span>
           <div class="collage-detail">
             <span class="collage-channels">Strategic Organic · Paid Social</span>
@@ -1324,8 +1292,8 @@ footer {
       </div>
       <div class="collage-item">
         <img src="media/unioverse-collectibles-new.jpg" alt="Unioverse Collectibles">
-        <div class="collage-ribbon"><span class="collage-ribbon-name">Transmedia</span></div>
         <div class="collage-data">
+          <span class="collage-industry">Transmedia</span>
           <span class="collage-campaign">Unioverse — Collectibles</span>
           <div class="collage-detail">
             <span class="collage-channels">Strategic Organic</span>
@@ -1338,8 +1306,8 @@ footer {
       </div>
       <div class="collage-item">
         <video src="media/aitv-reel.mp4" autoplay muted loop playsinline preload="auto"></video>
-        <div class="collage-ribbon"><span class="collage-ribbon-name">Creative</span></div>
         <div class="collage-data">
+          <span class="collage-industry">Creative</span>
           <span class="collage-campaign">AITV — Agency</span>
           <div class="collage-detail">
             <span class="collage-channels">Full-Service · All Platforms</span>
@@ -1353,8 +1321,8 @@ footer {
       <!-- Duplicate for seamless loop -->
       <div class="collage-item">
         <video src="media/cinematic-trailer.mp4" autoplay muted loop playsinline style="transform: scale(1.35); transform-origin: center center;"></video>
-        <div class="collage-ribbon"><span class="collage-ribbon-name">Gaming</span></div>
         <div class="collage-data">
+          <span class="collage-industry">Gaming</span>
           <span class="collage-campaign">Unioverse — Launch</span>
           <div class="collage-detail">
             <span class="collage-channels">Paid Social · Display</span>
@@ -1367,8 +1335,8 @@ footer {
       </div>
       <div class="collage-item">
         <video src="media/spekter-openbeta.mp4" autoplay muted loop playsinline></video>
-        <div class="collage-ribbon"><span class="collage-ribbon-name">Gaming</span></div>
         <div class="collage-data">
+          <span class="collage-industry">Gaming</span>
           <span class="collage-campaign">Spekter Agency — Open Beta</span>
           <div class="collage-detail">
             <span class="collage-channels">Paid Social · ASO · Growth Tactics</span>
@@ -1381,8 +1349,8 @@ footer {
       </div>
       <div class="collage-item">
         <video src="media/spekter-city.mp4" autoplay muted loop playsinline></video>
-        <div class="collage-ribbon"><span class="collage-ribbon-name">Gaming</span></div>
         <div class="collage-data">
+          <span class="collage-industry">Gaming</span>
           <span class="collage-campaign">Spekter City — Closed Beta</span>
           <div class="collage-detail">
             <span class="collage-channels">Paid Social · Community · ASO</span>
@@ -1395,8 +1363,8 @@ footer {
       </div>
       <div class="collage-item">
         <img src="media/krisha-render.jpg" alt="Unioverse — Krishah" style="object-position: center 0%;">
-        <div class="collage-ribbon"><span class="collage-ribbon-name">Gaming</span></div>
         <div class="collage-data">
+          <span class="collage-industry">Gaming</span>
           <span class="collage-campaign">Unioverse — Krishah Drop</span>
           <div class="collage-detail">
             <span class="collage-channels">Paid Social · Strategic Organic</span>
@@ -1409,8 +1377,8 @@ footer {
       </div>
       <div class="collage-item">
         <video src="media/reyu-portal.mp4" autoplay muted loop playsinline style="object-position: center 0%;"></video>
-        <div class="collage-ribbon"><span class="collage-ribbon-name">Gaming</span></div>
         <div class="collage-data">
+          <span class="collage-industry">Gaming</span>
           <span class="collage-campaign">Unioverse — Reyu Drop</span>
           <div class="collage-detail">
             <span class="collage-channels">Paid Social · Strategic Organic</span>
@@ -1423,8 +1391,8 @@ footer {
       </div>
       <div class="collage-item">
         <video src="media/tor-animation.mp4" autoplay muted loop playsinline></video>
-        <div class="collage-ribbon"><span class="collage-ribbon-name">Gaming</span></div>
         <div class="collage-data">
+          <span class="collage-industry">Gaming</span>
           <span class="collage-campaign">Unioverse — Tor Drop</span>
           <div class="collage-detail">
             <span class="collage-channels">Paid Social · Strategic Organic</span>
@@ -1437,8 +1405,8 @@ footer {
       </div>
       <div class="collage-item">
         <img src="media/unioverse-anthology.jpg" alt="Unioverse Anthology">
-        <div class="collage-ribbon"><span class="collage-ribbon-name">Transmedia</span></div>
         <div class="collage-data">
+          <span class="collage-industry">Transmedia</span>
           <span class="collage-campaign">Unioverse — Anthology</span>
           <div class="collage-detail">
             <span class="collage-channels">Strategic Organic</span>
@@ -1451,8 +1419,8 @@ footer {
       </div>
       <div class="collage-item">
         <img src="media/unioverse-comics.webp" alt="Unioverse Comics" style="position:absolute; top:-640px; left:-130px; width:600px; height:auto; object-fit:initial;">
-        <div class="collage-ribbon"><span class="collage-ribbon-name">Transmedia</span></div>
         <div class="collage-data">
+          <span class="collage-industry">Transmedia</span>
           <span class="collage-campaign">Unioverse — Comics</span>
           <div class="collage-detail">
             <span class="collage-channels">Strategic Organic · Paid Social</span>
@@ -1465,8 +1433,8 @@ footer {
       </div>
       <div class="collage-item">
         <img src="media/unioverse-collectibles-new.jpg" alt="Unioverse Collectibles">
-        <div class="collage-ribbon"><span class="collage-ribbon-name">Transmedia</span></div>
         <div class="collage-data">
+          <span class="collage-industry">Transmedia</span>
           <span class="collage-campaign">Unioverse — Collectibles</span>
           <div class="collage-detail">
             <span class="collage-channels">Strategic Organic</span>
@@ -1479,8 +1447,8 @@ footer {
       </div>
       <div class="collage-item">
         <video src="media/aitv-reel.mp4" autoplay muted loop playsinline preload="auto"></video>
-        <div class="collage-ribbon"><span class="collage-ribbon-name">Creative</span></div>
         <div class="collage-data">
+          <span class="collage-industry">Creative</span>
           <span class="collage-campaign">AITV — Agency</span>
           <div class="collage-detail">
             <span class="collage-channels">Full-Service · All Platforms</span>
@@ -1503,20 +1471,6 @@ footer {
       <div class="work-link">
         <span class="work-index">01</span>
         <div class="work-title-group">
-          <span class="work-title">Sonar</span>
-          <span class="work-descriptor">Operating system for freelancers</span>
-        </div>
-        <ul class="work-links">
-          <li><a href="waitlist.html" target="_blank" rel="noopener">Waitlist <span class="arrow">&#8599;</span></a></li>
-        </ul>
-        <span class="work-category">SaaS</span>
-        <span class="work-year">2026</span>
-      </div>
-    </li>
-    <li class="work-item reveal reveal-delay-2">
-      <div class="work-link">
-        <span class="work-index">02</span>
-        <div class="work-title-group">
           <span class="work-title">Bloom</span>
           <span class="work-descriptor">Voice-first AI answer engine</span>
         </div>
@@ -1529,7 +1483,7 @@ footer {
     </li>
     <li class="work-item reveal reveal-delay-3">
       <div class="work-link">
-        <span class="work-index">03</span>
+        <span class="work-index">02</span>
         <div class="work-title-group">
           <span class="work-title">Spekter Games</span>
           <span class="work-descriptor">Mobile gaming studio</span>
@@ -1543,7 +1497,7 @@ footer {
     </li>
     <li class="work-item reveal reveal-delay-4">
       <div class="work-link">
-        <span class="work-index">04</span>
+        <span class="work-index">03</span>
         <div class="work-title-group">
           <span class="work-title">ChronoSpace</span>
           <span class="work-descriptor">4D information capture technology</span>
@@ -1557,7 +1511,7 @@ footer {
     </li>
     <li class="work-item reveal">
       <div class="work-link">
-        <span class="work-index">05</span>
+        <span class="work-index">04</span>
         <div class="work-title-group">
           <span class="work-title">Unioverse</span>
           <span class="work-descriptor">Sci-fi universe full of comics, stories, and games</span>
@@ -1571,7 +1525,7 @@ footer {
     </li>
     <li class="work-item reveal">
       <div class="work-link">
-        <span class="work-index">06</span>
+        <span class="work-index">05</span>
         <div class="work-title-group">
           <span class="work-title">AITV</span>
           <span class="work-descriptor">Agency turned strategic acquisition</span>
@@ -1614,7 +1568,7 @@ footer {
       <p>
         I build products and the systems that get them into people's hands.
         I helped build the marketing engine behind Unioverse and now spend my
-        time building software like Sonar and Bloom while advising teams like
+        time building software like Bloom while advising teams like
         Spekter Games on product-led growth.
       </p>
     </div>
