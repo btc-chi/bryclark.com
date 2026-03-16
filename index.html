@@ -1270,7 +1270,7 @@ footer {
         </div>
       </div>
       <div class="collage-item">
-        <img src="media/unioverse-comics.webp" alt="Unioverse Comics" style="object-position: center 75%;">
+        <img src="media/unioverse-comics.webp" alt="Unioverse Comics" style="position:absolute; top:-640px; left:-130px; width:600px; height:auto; object-fit:initial;">
         <div class="collage-ribbon"><span class="collage-ribbon-name">Transmedia</span></div>
         <div class="collage-data">
           <span class="collage-campaign">Unioverse — Comics</span>
@@ -1411,7 +1411,7 @@ footer {
         </div>
       </div>
       <div class="collage-item">
-        <img src="media/unioverse-comics.webp" alt="Unioverse Comics" style="object-position: center 75%;">
+        <img src="media/unioverse-comics.webp" alt="Unioverse Comics" style="position:absolute; top:-640px; left:-130px; width:600px; height:auto; object-fit:initial;">
         <div class="collage-ribbon"><span class="collage-ribbon-name">Transmedia</span></div>
         <div class="collage-data">
           <span class="collage-campaign">Unioverse — Comics</span>
@@ -1624,6 +1624,17 @@ footer {
     </div>
     <div class="testimonial-card reveal reveal-delay-2">
       <div class="testimonial-header">
+        <img class="testimonial-avatar" src="media/testimonials/paul.jpg" alt="Paul Walborsky">
+        <div class="testimonial-info">
+          <span class="testimonial-name">Paul Walborsky</span>
+          <span class="testimonial-title">Co-Founder AI Reverie · 4x Exits</span>
+        </div>
+      </div>
+      <p class="testimonial-quote">"Bryan is one of those rare people who operates at the intersection of product instinct and distribution expertise. When we brought him in at ChronoSpace, he immediately grasped the complexity of what we were building and translated it into positioning that resonated with both technical and non-technical audiences. He doesn't just market — he deeply understands the product, identifies the wedge, and builds the go-to-market around it. Any founder would be lucky to have Bryan in their corner early."</p>
+      <button class="testimonial-toggle" onclick="this.previousElementSibling.classList.toggle('expanded'); this.textContent = this.previousElementSibling.classList.contains('expanded') ? 'Show less' : 'See more';">See more</button>
+    </div>
+    <div class="testimonial-card reveal reveal-delay-3">
+      <div class="testimonial-header">
         <img class="testimonial-avatar" src="media/testimonials/brent.jpg" alt="Brent Friedman">
         <div class="testimonial-info">
           <span class="testimonial-name">Brent Friedman</span>
@@ -1633,7 +1644,7 @@ footer {
       <p class="testimonial-quote">"Working with Bryan at Random Games was an absolute pleasure and a privilege. His superpower is turning strangers into superfans, and the thriving Unioverse community is a testament to Bryan's smarts and skills as a master communicator. If you're looking for someone to build and lead your brand — the right way — look no further than Bryan."</p>
       <button class="testimonial-toggle" onclick="this.previousElementSibling.classList.toggle('expanded'); this.textContent = this.previousElementSibling.classList.contains('expanded') ? 'Show less' : 'See more';">See more</button>
     </div>
-    <div class="testimonial-card reveal reveal-delay-3">
+    <div class="testimonial-card reveal">
       <div class="testimonial-header">
         <img class="testimonial-avatar" src="media/testimonials/wyeth.jpg" alt="Wyeth Ridgway">
         <div class="testimonial-info">
@@ -1664,17 +1675,6 @@ footer {
         </div>
       </div>
       <p class="testimonial-quote">"Working with Bryan is both a pleasure and a source of inspiration. He is a top performer who consistently rises to the challenge of growing our community and elevating brand recognition. His ability to navigate complex messaging, maintain a consistent visual and tonal identity, and foster strategic partnerships is second nature to him. Bryan's insightful direction always elevates the quality and cohesion of our efforts. He tackles brand and community challenges with ease and precision."</p>
-      <button class="testimonial-toggle" onclick="this.previousElementSibling.classList.toggle('expanded'); this.textContent = this.previousElementSibling.classList.contains('expanded') ? 'Show less' : 'See more';">See more</button>
-    </div>
-    <div class="testimonial-card reveal">
-      <div class="testimonial-header">
-        <img class="testimonial-avatar" src="media/testimonials/paul.jpg" alt="Paul Walborsky">
-        <div class="testimonial-info">
-          <span class="testimonial-name">Paul Walborsky</span>
-          <span class="testimonial-title">Co-Founder AI Reverie · 4x Exits</span>
-        </div>
-      </div>
-      <p class="testimonial-quote">"Bryan is one of those rare people who operates at the intersection of product instinct and distribution expertise. When we brought him in at ChronoSpace, he immediately grasped the complexity of what we were building and translated it into positioning that resonated with both technical and non-technical audiences. He doesn't just market — he deeply understands the product, identifies the wedge, and builds the go-to-market around it. Any founder would be lucky to have Bryan in their corner early."</p>
       <button class="testimonial-toggle" onclick="this.previousElementSibling.classList.toggle('expanded'); this.textContent = this.previousElementSibling.classList.contains('expanded') ? 'Show less' : 'See more';">See more</button>
     </div>
   </div>
@@ -1714,6 +1714,24 @@ const revealObserver = new IntersectionObserver((entries) => {
 }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
 
 reveals.forEach(el => revealObserver.observe(el));
+
+// --- Testimonials: auto-scroll to show 2nd card on first view ---
+const testimonialsTrack = document.querySelector('.testimonials-track');
+if (testimonialsTrack) {
+  const testimonialsObs = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const firstCard = testimonialsTrack.querySelector('.testimonial-card');
+        if (firstCard) {
+          const scrollTo = firstCard.offsetWidth * 0.55;
+          testimonialsTrack.scrollTo({ left: scrollTo, behavior: 'smooth' });
+        }
+        testimonialsObs.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.3 });
+  testimonialsObs.observe(testimonialsTrack);
+}
 
 // --- Nav Scroll Shrink ---
 const nav = document.querySelector('nav');
