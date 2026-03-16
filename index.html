@@ -96,6 +96,16 @@ nav.scrolled {
   padding: var(--space-xs) var(--space-md);
 }
 
+nav.nav-hidden {
+  transform: translateY(-100%);
+}
+
+@media (max-width: 768px) {
+  nav {
+    transition: padding 0.4s ease, transform 0.3s ease;
+  }
+}
+
 .nav-logo {
   font-size: 0.8rem;
   font-weight: 700;
@@ -914,7 +924,7 @@ footer {
   }
 
   .hero {
-    padding-bottom: var(--space-md);
+    padding-bottom: var(--space-xl);
   }
 
   .hero-sub {
@@ -1766,9 +1776,10 @@ if (testimonialsSection) {
   });
 })();
 
-// --- Nav Scroll Shrink ---
+// --- Nav Scroll Shrink + Mobile Auto-Hide ---
 const nav = document.querySelector('nav');
 let lastScroll = 0;
+const isMobile = () => window.innerWidth <= 768;
 
 window.addEventListener('scroll', () => {
   const scrollY = window.scrollY;
@@ -1776,7 +1787,18 @@ window.addEventListener('scroll', () => {
     nav.classList.add('scrolled');
   } else {
     nav.classList.remove('scrolled');
+    nav.classList.remove('nav-hidden');
   }
+
+  // Mobile: hide on scroll down, show on scroll up
+  if (isMobile() && scrollY > 80) {
+    if (scrollY > lastScroll + 5) {
+      nav.classList.add('nav-hidden');
+    } else if (scrollY < lastScroll - 5) {
+      nav.classList.remove('nav-hidden');
+    }
+  }
+
   lastScroll = scrollY;
 }, { passive: true });
 
