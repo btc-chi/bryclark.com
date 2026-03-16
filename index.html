@@ -1910,6 +1910,9 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
       const dy = Math.abs(e.changedTouches[0].clientY - touchStartY);
       if (dx > 15 || dy > 15) return; // Was a swipe, ignore
 
+      // Let link taps through when card is active
+      if (e.target.closest('.collage-link') && item.classList.contains('active')) return;
+
       e.preventDefault();
       e.stopPropagation();
 
