@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>Bryan Clark — Product, Growth, Distribution</title>
 <meta name="description" content="Bryan Clark builds products and the distribution systems that help them grow. Product-led growth across gaming, AI, and consumer software.">
 <style>
@@ -85,6 +85,7 @@ nav {
   justify-content: space-between;
   align-items: center;
   padding: var(--space-sm) var(--space-md);
+  padding-top: max(var(--space-sm), env(safe-area-inset-top, var(--space-sm)));
   background: rgba(240, 228, 203, 0.85);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
@@ -947,6 +948,16 @@ footer {
     flex-direction: column;
     gap: var(--space-md);
     align-items: flex-start;
+  }
+
+  nav {
+    padding: 0.5rem var(--space-md);
+    padding-top: max(0.5rem, env(safe-area-inset-top, 0.5rem));
+  }
+
+  nav.scrolled {
+    padding: 0.4rem var(--space-md);
+    padding-top: max(0.4rem, env(safe-area-inset-top, 0.4rem));
   }
 
   .nav-links {
