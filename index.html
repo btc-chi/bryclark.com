@@ -746,7 +746,7 @@ nav.scrolled {
 
 .testimonial-card {
   flex-shrink: 0;
-  width: 360px;
+  width: clamp(320px, 42vw, 560px);
   scroll-snap-align: start;
   padding: var(--space-md);
   border: 1px solid var(--text-3);
@@ -790,6 +790,9 @@ nav.scrolled {
   letter-spacing: 0.05em;
   color: var(--text-3);
   text-transform: uppercase;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .testimonial-quote {
@@ -825,7 +828,7 @@ nav.scrolled {
 }
 
 @media (max-width: 768px) {
-  .testimonial-card { width: 300px; }
+  .testimonial-card { width: calc(100vw - 5rem); }
 }
 
 /* --- Contact / Footer --- */
@@ -1660,6 +1663,17 @@ footer {
         </div>
       </div>
       <p class="testimonial-quote">"Working with Bryan is both a pleasure and a source of inspiration. He is a top performer who consistently rises to the challenge of growing our community and elevating brand recognition. His ability to navigate complex messaging, maintain a consistent visual and tonal identity, and foster strategic partnerships is second nature to him. Bryan's insightful direction always elevates the quality and cohesion of our efforts. He tackles brand and community challenges with ease and precision."</p>
+      <button class="testimonial-toggle" onclick="this.previousElementSibling.classList.toggle('expanded'); this.textContent = this.previousElementSibling.classList.contains('expanded') ? 'Show less' : 'See more';">See more</button>
+    </div>
+    <div class="testimonial-card reveal">
+      <div class="testimonial-header">
+        <img class="testimonial-avatar" src="media/testimonials/paul.jpg" alt="Paul Walborsky">
+        <div class="testimonial-info">
+          <span class="testimonial-name">Paul Walborsky</span>
+          <span class="testimonial-title">Co-Founder AI Reverie · 4x Exits</span>
+        </div>
+      </div>
+      <p class="testimonial-quote">"Bryan is one of those rare people who operates at the intersection of product instinct and distribution expertise. When we brought him in at ChronoSpace, he immediately grasped the complexity of what we were building and translated it into positioning that resonated with both technical and non-technical audiences. He doesn't just market — he deeply understands the product, identifies the wedge, and builds the go-to-market around it. Any founder would be lucky to have Bryan in their corner early."</p>
       <button class="testimonial-toggle" onclick="this.previousElementSibling.classList.toggle('expanded'); this.textContent = this.previousElementSibling.classList.contains('expanded') ? 'Show less' : 'See more';">See more</button>
     </div>
   </div>
