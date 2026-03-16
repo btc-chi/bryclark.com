@@ -101,9 +101,77 @@ nav.nav-hidden {
   transform: translateY(-100%);
 }
 
+/* --- Mobile Menu Toggle (Cheeseburger icon) --- */
+.menu-toggle {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-end;
+  gap: 4px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 6px 0;
+  z-index: 101;
+}
+
+.menu-toggle span {
+  display: block;
+  height: 2px;
+  background: var(--dark);
+  border-radius: 1px;
+  transition: all 0.3s ease;
+}
+
+.menu-toggle span:nth-child(1) { width: 22px; }
+.menu-toggle span:nth-child(2) { width: 16px; }
+.menu-toggle span:nth-child(3) { width: 22px; }
+
+/* X animation when open */
+nav.nav-open .menu-toggle span:nth-child(1) {
+  transform: translateY(6px) rotate(45deg);
+  width: 22px;
+}
+nav.nav-open .menu-toggle span:nth-child(2) {
+  opacity: 0;
+  width: 0;
+}
+nav.nav-open .menu-toggle span:nth-child(3) {
+  transform: translateY(-6px) rotate(-45deg);
+  width: 22px;
+}
+
 @media (max-width: 768px) {
   nav {
     transition: padding 0.4s ease, transform 0.3s ease;
+    flex-wrap: wrap;
+  }
+
+  .menu-toggle {
+    display: flex;
+  }
+
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    width: 100%;
+    gap: 0;
+    padding: var(--space-sm) 0 var(--space-xs);
+  }
+
+  nav.nav-open .nav-links {
+    display: flex;
+  }
+
+  .nav-links li {
+    width: 100%;
+  }
+
+  .nav-links a {
+    display: block;
+    padding: var(--space-xs) 0;
+    font-size: 0.85rem;
+    letter-spacing: 0.15em;
   }
 }
 
@@ -995,9 +1063,6 @@ footer {
     padding-top: max(0.4rem, env(safe-area-inset-top, 0.4rem));
   }
 
-  .nav-links {
-    gap: var(--space-sm);
-  }
 }
 
 @media (max-width: 480px) {
@@ -1020,6 +1085,11 @@ footer {
 <!-- Navigation -->
 <nav>
   <a href="#" class="nav-logo">Bryan Clark</a>
+  <button class="menu-toggle" aria-label="Menu">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
   <ul class="nav-links">
     <li><a href="#work">Work</a></li>
     <li><a href="#about">About</a></li>
@@ -1850,6 +1920,7 @@ window.addEventListener('scroll', () => {
   if (isMobile() && scrollY > 80) {
     if (scrollY > lastScroll + 5) {
       nav.classList.add('nav-hidden');
+      nav.classList.remove('nav-open');
     } else if (scrollY < lastScroll - 5) {
       nav.classList.remove('nav-hidden');
     }
@@ -1858,10 +1929,17 @@ window.addEventListener('scroll', () => {
   lastScroll = scrollY;
 }, { passive: true });
 
+// --- Mobile Menu Toggle ---
+const menuToggle = document.querySelector('.menu-toggle');
+menuToggle.addEventListener('click', () => {
+  nav.classList.toggle('nav-open');
+});
+
 // --- Smooth Scroll for Nav Links ---
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
   anchor.addEventListener('click', (e) => {
     e.preventDefault();
+    nav.classList.remove('nav-open'); // close menu on link tap
     const target = document.querySelector(anchor.getAttribute('href'));
     if (target) {
       target.scrollIntoView({ behavior: 'smooth', block: 'start' });
