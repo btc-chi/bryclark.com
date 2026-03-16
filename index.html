@@ -1354,7 +1354,7 @@ footer {
         </div>
       </div>
       <div class="collage-item">
-        <img src="media/unioverse-collectibles-new.jpg" alt="Unioverse Collectibles">
+        <video src="media/unioverse-collectibles.mp4" autoplay muted loop playsinline></video>
         <div class="collage-data">
           <span class="collage-industry">Transmedia</span>
           <span class="collage-campaign">Unioverse — Collectibles</span>
@@ -1512,7 +1512,7 @@ footer {
         </div>
       </div>
       <div class="collage-item">
-        <img src="media/unioverse-collectibles-new.jpg" alt="Unioverse Collectibles">
+        <video src="media/unioverse-collectibles.mp4" autoplay muted loop playsinline></video>
         <div class="collage-data">
           <span class="collage-industry">Transmedia</span>
           <span class="collage-campaign">Unioverse — Collectibles</span>
@@ -1869,7 +1869,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
   });
 });
 
-// --- Collage: Tap to Toggle (touch devices) ---
+// --- Collage: Mobile Touch System (tap to toggle + drag to scroll) ---
 (function() {
   const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
   if (!isTouchDevice) return;
@@ -1882,47 +1882,131 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 
   function closeItem(item) {
     item.classList.remove('active');
-    // Resume video if it has one
     const vid = item.querySelector('video');
     if (vid) { vid.muted = true; vid.play().catch(() => {}); }
   }
 
   function closeAll() {
     document.querySelectorAll('.collage-item.active').forEach(closeItem);
-    document.querySelectorAll('.collage-track').forEach(track => {
-      track.style.animationPlayState = '';
-    });
   }
 
-  // Track touch position to distinguish taps from swipes
-  let touchStartX = 0;
-  let touchStartY = 0;
+  // Per-track state — replace CSS animation with JS-driven scroll on mobile
+  const tracks = document.querySelectorAll('.collage-track');
+  const trackState = new Map();
 
-  document.querySelectorAll('.collage-item').forEach(item => {
-    item.addEventListener('touchstart', (e) => {
-      touchStartX = e.touches[0].clientX;
-      touchStartY = e.touches[0].clientY;
+  tracks.forEach(track => {
+    const isReverse = track.classList.contains('collage-track--reverse');
+    const duration = isReverse ? 40 : 35; // match CSS durations
+
+    // Kill CSS animation — JS drives scrolling on mobile
+    track.style.animation = 'none';
+
+    const halfW = () => track.scrollWidth / 2;
+
+    const s = {
+      pos: isReverse ? -halfW() : 0,
+      auto: true,      // auto-scrolling active
+      paused: false,    // paused for card activation
+      dragging: false,  // user is dragging
+      startX: 0,
+      startY: 0,
+      dragBase: 0,
+      timer: null,
+    };
+    trackState.set(track, s);
+
+    // Keep position in seamless-loop range
+    function wrap() {
+      const hw = halfW();
+      if (hw <= 0) return;
+      while (s.pos <= -hw) s.pos += hw;
+      while (s.pos > 0) s.pos -= hw;
+    }
+
+    // Animation loop (runs continuously)
+    (function tick() {
+      if (!s.dragging && s.auto && !s.paused) {
+        const hw = halfW();
+        if (hw > 0) {
+          s.pos += (isReverse ? 1 : -1) * (hw / (duration * 60));
+          wrap();
+        }
+      }
+      track.style.transform = `translateX(${s.pos}px)`;
+      requestAnimationFrame(tick);
+    })();
+
+    // Drag handlers on track level
+    track.addEventListener('touchstart', e => {
+      s.startX = e.touches[0].clientX;
+      s.startY = e.touches[0].clientY;
+      s.dragBase = s.pos;
+      s.dragging = false;
+      clearTimeout(s.timer);
     }, { passive: true });
 
-    item.addEventListener('touchend', (e) => {
-      // Ignore swipes (only respond to taps)
-      const dx = Math.abs(e.changedTouches[0].clientX - touchStartX);
-      const dy = Math.abs(e.changedTouches[0].clientY - touchStartY);
-      if (dx > 15 || dy > 15) return; // Was a swipe, ignore
+    track.addEventListener('touchmove', e => {
+      const dx = e.touches[0].clientX - s.startX;
+      const absDx = Math.abs(dx);
+      const absDy = Math.abs(e.touches[0].clientY - s.startY);
 
-      // Let link taps through when card is active
-      if (e.target.closest('.collage-link') && item.classList.contains('active')) return;
+      // Start drag when horizontal movement wins
+      if (!s.dragging && absDx > 10 && absDx > absDy) {
+        s.dragging = true;
+        s.auto = false;
+        closeAll();
+        trackState.forEach(st => { st.paused = false; });
+      }
+
+      if (s.dragging) {
+        e.preventDefault(); // prevent page scroll during drag
+        s.pos = s.dragBase + dx;
+        wrap();
+      }
+    }, { passive: false });
+
+    track.addEventListener('touchend', () => {
+      if (s.dragging) {
+        s.dragging = false;
+        // Resume auto-scroll after 2s pause
+        s.timer = setTimeout(() => { s.auto = true; }, 2000);
+      }
+    });
+  });
+
+  // Card tap handlers
+  document.querySelectorAll('.collage-item').forEach(item => {
+    item.addEventListener('touchend', e => {
+      const track = item.closest('.collage-track');
+      const s = trackState.get(track);
+
+      // If track was being dragged, let the track handler deal with it
+      if (s && s.dragging) return;
+
+      const dx = Math.abs(e.changedTouches[0].clientX - s.startX);
+      const dy = Math.abs(e.changedTouches[0].clientY - s.startY);
+      const wasActive = item.classList.contains('active');
+
+      // Swipe threshold — skip if card is active (marquee is paused, no movement)
+      if (!wasActive && (dx > 15 || dy > 15)) return;
+
+      // Let link taps through on active cards
+      if (e.target.closest('.collage-link') && wasActive) return;
 
       e.preventDefault();
       e.stopPropagation();
 
-      const wasActive = item.classList.contains('active');
       closeAll();
+      // Resume all tracks
+      trackState.forEach(st => {
+        st.paused = false;
+        st.auto = true;
+        clearTimeout(st.timer);
+      });
 
       if (!wasActive) {
         item.classList.add('active');
-        item.closest('.collage-track').style.animationPlayState = 'paused';
-        // Pause video if it has one
+        if (s) s.paused = true;
         const vid = item.querySelector('video');
         if (vid) vid.pause();
       }
@@ -1930,9 +2014,14 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
   });
 
   // Tap outside any collage item to close
-  document.addEventListener('touchend', (e) => {
+  document.addEventListener('touchend', e => {
     if (!e.target.closest('.collage-item')) {
       closeAll();
+      trackState.forEach(st => {
+        st.paused = false;
+        st.auto = true;
+        clearTimeout(st.timer);
+      });
     }
   });
 })();
