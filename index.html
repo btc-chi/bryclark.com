@@ -1294,7 +1294,7 @@ footer {
         </div>
       </div>
       <div class="collage-item">
-        <video src="media/aitv-reel.mp4" autoplay muted loop playsinline></video>
+        <video src="media/aitv-reel.mp4" autoplay muted loop playsinline preload="auto"></video>
         <div class="collage-ribbon"><span class="collage-ribbon-name">Creative</span></div>
         <div class="collage-data">
           <span class="collage-campaign">AITV — Agency</span>
@@ -1435,7 +1435,7 @@ footer {
         </div>
       </div>
       <div class="collage-item">
-        <video src="media/aitv-reel.mp4" autoplay muted loop playsinline></video>
+        <video src="media/aitv-reel.mp4" autoplay muted loop playsinline preload="auto"></video>
         <div class="collage-ribbon"><span class="collage-ribbon-name">Creative</span></div>
         <div class="collage-data">
           <span class="collage-campaign">AITV — Agency</span>
@@ -1802,6 +1802,12 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     }
   }
 
+  // Play once video has enough data loaded
+  videos.forEach(vid => {
+    vid.addEventListener('canplay', () => playVideo(vid), { once: true });
+    vid.addEventListener('loadeddata', () => playVideo(vid), { once: true });
+  });
+
   // Attempt play immediately
   videos.forEach(playVideo);
 
@@ -1827,6 +1833,14 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     clearTimeout(scrollTimer);
     scrollTimer = setTimeout(() => videos.forEach(playVideo), 200);
   }, { passive: true });
+
+  // Periodic retry for stubborn videos (stops after 10s)
+  let retryCount = 0;
+  const retryInterval = setInterval(() => {
+    videos.forEach(playVideo);
+    retryCount++;
+    if (retryCount >= 5) clearInterval(retryInterval);
+  }, 2000);
 })();
 </script>
 
