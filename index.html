@@ -1715,24 +1715,6 @@ const revealObserver = new IntersectionObserver((entries) => {
 
 reveals.forEach(el => revealObserver.observe(el));
 
-// --- Testimonials: auto-scroll to show 2nd card on first view ---
-const testimonialsTrack = document.querySelector('.testimonials-track');
-if (testimonialsTrack) {
-  const testimonialsObs = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        const firstCard = testimonialsTrack.querySelector('.testimonial-card');
-        if (firstCard) {
-          const scrollTo = firstCard.offsetWidth * 0.55;
-          testimonialsTrack.scrollTo({ left: scrollTo, behavior: 'smooth' });
-        }
-        testimonialsObs.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.3 });
-  testimonialsObs.observe(testimonialsTrack);
-}
-
 // --- Nav Scroll Shrink ---
 const nav = document.querySelector('nav');
 let lastScroll = 0;
