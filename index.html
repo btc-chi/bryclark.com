@@ -150,29 +150,6 @@ nav.nav-open .menu-toggle span:nth-child(3) {
   .menu-toggle {
     display: flex;
   }
-
-  .nav-links {
-    display: none;
-    flex-direction: column;
-    width: 100%;
-    gap: 0;
-    padding: var(--space-sm) 0 var(--space-xs);
-  }
-
-  nav.nav-open .nav-links {
-    display: flex;
-  }
-
-  .nav-links li {
-    width: 100%;
-  }
-
-  .nav-links a {
-    display: block;
-    padding: var(--space-xs) 0;
-    font-size: 0.85rem;
-    letter-spacing: 0.15em;
-  }
 }
 
 .nav-logo {
@@ -217,6 +194,32 @@ nav.nav-open .menu-toggle span:nth-child(3) {
 
 .nav-links a:hover::after {
   width: 100%;
+}
+
+/* --- Mobile Nav Dropdown --- */
+@media (max-width: 768px) {
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    width: 100%;
+    gap: 0;
+    padding: var(--space-sm) 0 var(--space-xs);
+  }
+
+  nav.nav-open .nav-links {
+    display: flex;
+  }
+
+  .nav-links li {
+    width: 100%;
+  }
+
+  .nav-links a {
+    display: block;
+    padding: var(--space-xs) 0;
+    font-size: 0.85rem;
+    letter-spacing: 0.15em;
+  }
 }
 
 /* --- Hero --- */
@@ -1121,31 +1124,17 @@ footer {
   <p class="section-label">Campaigns</p>
   <div class="collage-track-wrapper">
     <div class="collage-track">
-      <!-- Row 1 — Entertainment & Creative (ordered lightest-first for fast mobile load) -->
+      <!-- Row 1 — Entertainment & Creative (contrast rhythm: dark↔light↔warm↔cool) -->
       <div class="collage-item">
-        <img src="media/s-deniro-registered.jpg" alt="S. Deniro — Yours Truly">
-        <div class="collage-data">
-          <span class="collage-industry">Creative</span>
-          <span class="collage-campaign">S. Deniro — Yours Truly</span>
-          <div class="collage-detail">
-            <span class="collage-channels">Strategic Organic · Paid Social</span>
-            <div class="collage-metrics">
-              <span class="collage-metric">CPM<b>$4.20</b></span>
-              <span class="collage-metric">CR<b>5.8%</b></span>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="collage-item">
-        <img src="media/hardrock-raceweek.jpg" alt="DAER Dayclub" style="object-position: center 100%; transform: scale(1.05); transform-origin: center bottom;">
+        <video src="media/purge-visuals.mp4" autoplay muted loop playsinline></video>
         <div class="collage-data">
           <span class="collage-industry">Events</span>
-          <span class="collage-campaign">DAER — Dayclub</span>
+          <span class="collage-campaign">PURGE — Tour</span>
           <div class="collage-detail">
-            <span class="collage-channels">Paid Social · Display · Email</span>
+            <span class="collage-channels">Paid Social · Strategic Organic</span>
             <div class="collage-metrics">
-              <span class="collage-metric">CPM<b>$5.80</b></span>
-              <span class="collage-metric">ROAS<b>1.8x</b></span>
+              <span class="collage-metric">CPA<b>$2.40</b></span>
+              <span class="collage-metric">ROAS<b>2.2x</b></span>
             </div>
           </div>
         </div>
@@ -1165,29 +1154,15 @@ footer {
         </div>
       </div>
       <div class="collage-item">
-        <video src="media/mavv-visuals.mp4" autoplay muted loop playsinline></video>
+        <img src="media/s-deniro-registered.jpg" alt="S. Deniro — Yours Truly">
         <div class="collage-data">
           <span class="collage-industry">Creative</span>
-          <span class="collage-campaign">MAVV — Campaign</span>
+          <span class="collage-campaign">S. Deniro — Yours Truly</span>
           <div class="collage-detail">
-            <span class="collage-channels">Paid Social · Strategic Organic</span>
+            <span class="collage-channels">Strategic Organic · Paid Social</span>
             <div class="collage-metrics">
-              <span class="collage-metric">CPM<b>$3.40</b></span>
-              <span class="collage-metric">CR<b>4.1%</b></span>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="collage-item">
-        <video src="media/purge-visuals.mp4" autoplay muted loop playsinline></video>
-        <div class="collage-data">
-          <span class="collage-industry">Events</span>
-          <span class="collage-campaign">PURGE — Tour</span>
-          <div class="collage-detail">
-            <span class="collage-channels">Paid Social · Strategic Organic</span>
-            <div class="collage-metrics">
-              <span class="collage-metric">CPA<b>$2.40</b></span>
-              <span class="collage-metric">ROAS<b>2.2x</b></span>
+              <span class="collage-metric">CPM<b>$4.20</b></span>
+              <span class="collage-metric">CR<b>5.8%</b></span>
             </div>
           </div>
         </div>
@@ -1202,35 +1177,49 @@ footer {
             <div class="collage-metrics">
               <span class="collage-metric">CPM<b>$5.40</b></span>
               <span class="collage-metric">ROAS<b>2.1x</b></span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="collage-item">
+        <img src="media/hardrock-raceweek.jpg" alt="DAER Dayclub" style="object-position: center 100%; transform: scale(1.05); transform-origin: center bottom;">
+        <div class="collage-data">
+          <span class="collage-industry">Events</span>
+          <span class="collage-campaign">DAER — Dayclub</span>
+          <div class="collage-detail">
+            <span class="collage-channels">Paid Social · Display · Email</span>
+            <div class="collage-metrics">
+              <span class="collage-metric">CPM<b>$5.80</b></span>
+              <span class="collage-metric">ROAS<b>1.8x</b></span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="collage-item">
+        <video src="media/mavv-visuals.mp4" autoplay muted loop playsinline></video>
+        <div class="collage-data">
+          <span class="collage-industry">Creative</span>
+          <span class="collage-campaign">MAVV — Campaign</span>
+          <div class="collage-detail">
+            <span class="collage-channels">Paid Social · Strategic Organic</span>
+            <div class="collage-metrics">
+              <span class="collage-metric">CPM<b>$3.40</b></span>
+              <span class="collage-metric">CR<b>4.1%</b></span>
             </div>
           </div>
         </div>
       </div>
       <!-- Duplicate for seamless loop -->
       <div class="collage-item">
-        <img src="media/s-deniro-registered.jpg" alt="S. Deniro — Yours Truly">
-        <div class="collage-data">
-          <span class="collage-industry">Creative</span>
-          <span class="collage-campaign">S. Deniro — Yours Truly</span>
-          <div class="collage-detail">
-            <span class="collage-channels">Strategic Organic · Paid Social</span>
-            <div class="collage-metrics">
-              <span class="collage-metric">CPM<b>$4.20</b></span>
-              <span class="collage-metric">CR<b>5.8%</b></span>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="collage-item">
-        <img src="media/hardrock-raceweek.jpg" alt="DAER Dayclub" style="object-position: center 100%; transform: scale(1.05); transform-origin: center bottom;">
+        <video src="media/purge-visuals.mp4" autoplay muted loop playsinline></video>
         <div class="collage-data">
           <span class="collage-industry">Events</span>
-          <span class="collage-campaign">DAER — Dayclub</span>
+          <span class="collage-campaign">PURGE — Tour</span>
           <div class="collage-detail">
-            <span class="collage-channels">Paid Social · Display · Email</span>
+            <span class="collage-channels">Paid Social · Strategic Organic</span>
             <div class="collage-metrics">
-              <span class="collage-metric">CPM<b>$5.80</b></span>
-              <span class="collage-metric">ROAS<b>1.8x</b></span>
+              <span class="collage-metric">CPA<b>$2.40</b></span>
+              <span class="collage-metric">ROAS<b>2.2x</b></span>
             </div>
           </div>
         </div>
@@ -1250,29 +1239,15 @@ footer {
         </div>
       </div>
       <div class="collage-item">
-        <video src="media/mavv-visuals.mp4" autoplay muted loop playsinline></video>
+        <img src="media/s-deniro-registered.jpg" alt="S. Deniro — Yours Truly">
         <div class="collage-data">
           <span class="collage-industry">Creative</span>
-          <span class="collage-campaign">MAVV — Campaign</span>
+          <span class="collage-campaign">S. Deniro — Yours Truly</span>
           <div class="collage-detail">
-            <span class="collage-channels">Paid Social · Strategic Organic</span>
+            <span class="collage-channels">Strategic Organic · Paid Social</span>
             <div class="collage-metrics">
-              <span class="collage-metric">CPM<b>$3.40</b></span>
-              <span class="collage-metric">CR<b>4.1%</b></span>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="collage-item">
-        <video src="media/purge-visuals.mp4" autoplay muted loop playsinline></video>
-        <div class="collage-data">
-          <span class="collage-industry">Events</span>
-          <span class="collage-campaign">PURGE — Tour</span>
-          <div class="collage-detail">
-            <span class="collage-channels">Paid Social · Strategic Organic</span>
-            <div class="collage-metrics">
-              <span class="collage-metric">CPA<b>$2.40</b></span>
-              <span class="collage-metric">ROAS<b>2.2x</b></span>
+              <span class="collage-metric">CPM<b>$4.20</b></span>
+              <span class="collage-metric">CR<b>5.8%</b></span>
             </div>
           </div>
         </div>
@@ -1287,13 +1262,55 @@ footer {
             <div class="collage-metrics">
               <span class="collage-metric">CPM<b>$5.40</b></span>
               <span class="collage-metric">ROAS<b>2.1x</b></span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="collage-item">
+        <img src="media/hardrock-raceweek.jpg" alt="DAER Dayclub" style="object-position: center 100%; transform: scale(1.05); transform-origin: center bottom;">
+        <div class="collage-data">
+          <span class="collage-industry">Events</span>
+          <span class="collage-campaign">DAER — Dayclub</span>
+          <div class="collage-detail">
+            <span class="collage-channels">Paid Social · Display · Email</span>
+            <div class="collage-metrics">
+              <span class="collage-metric">CPM<b>$5.80</b></span>
+              <span class="collage-metric">ROAS<b>1.8x</b></span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="collage-item">
+        <video src="media/mavv-visuals.mp4" autoplay muted loop playsinline></video>
+        <div class="collage-data">
+          <span class="collage-industry">Creative</span>
+          <span class="collage-campaign">MAVV — Campaign</span>
+          <div class="collage-detail">
+            <span class="collage-channels">Paid Social · Strategic Organic</span>
+            <div class="collage-metrics">
+              <span class="collage-metric">CPM<b>$3.40</b></span>
+              <span class="collage-metric">CR<b>4.1%</b></span>
             </div>
           </div>
         </div>
       </div>
     </div>
     <div class="collage-track collage-track--reverse">
-      <!-- Row 2 — Gaming, Transmedia & Creative (ordered lightest-first for mobile) -->
+      <!-- Row 2 — Gaming, Transmedia & Creative (contrast rhythm) -->
+      <div class="collage-item">
+        <video src="media/cinematic-trailer.mp4" autoplay muted loop playsinline style="transform: scale(1.35); transform-origin: center center;"></video>
+        <div class="collage-data">
+          <span class="collage-industry">Gaming</span>
+          <span class="collage-campaign">Unioverse — Launch</span>
+          <div class="collage-detail">
+            <span class="collage-channels">Paid Social · Display</span>
+            <div class="collage-metrics">
+              <span class="collage-metric">CPI<b>$0.10</b></span>
+              <span class="collage-metric">CR<b>4.2%</b></span>
+            </div>
+          </div>
+        </div>
+      </div>
       <div class="collage-item">
         <img src="media/krisha-render.jpg" alt="Unioverse — Krishah" style="object-position: center 0%;">
         <div class="collage-data">
@@ -1304,6 +1321,78 @@ footer {
             <div class="collage-metrics">
               <span class="collage-metric">CPA<b>$2.80</b></span>
               <span class="collage-metric">CR<b>4.6%</b></span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="collage-item">
+        <video src="media/hoverdrome-tourney.mp4" autoplay muted loop playsinline></video>
+        <div class="collage-data">
+          <span class="collage-industry">Gaming</span>
+          <span class="collage-campaign">Unioverse — Games</span>
+          <div class="collage-detail">
+            <span class="collage-channels">Esports · UGC · Community</span>
+            <div class="collage-metrics">
+              <span class="collage-metric">Modes<b>2</b></span>
+              <span class="collage-metric">Type<b>F2P</b></span>
+            </div>
+          </div>
+          <a href="https://www.youtube.com/watch?v=Bca61-RowT0" target="_blank" rel="noopener" class="collage-link">Watch &#8599;</a>
+        </div>
+      </div>
+      <div class="collage-item">
+        <video src="media/unioverse-collectibles.mp4" autoplay muted loop playsinline></video>
+        <div class="collage-data">
+          <span class="collage-industry">Transmedia</span>
+          <span class="collage-campaign">Unioverse — Collectibles</span>
+          <div class="collage-detail">
+            <span class="collage-channels">Strategic Organic</span>
+            <div class="collage-metrics">
+              <span class="collage-metric">CPM<b>$0.01</b></span>
+              <span class="collage-metric">CR<b>3.4%</b></span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="collage-item">
+        <video src="media/tor-animation.mp4" autoplay muted loop playsinline style="object-position: center 20%; transform: scale(1.3); transform-origin: center 20%;"></video>
+        <div class="collage-data">
+          <span class="collage-industry">Gaming</span>
+          <span class="collage-campaign">Unioverse — Tor Drop</span>
+          <div class="collage-detail">
+            <span class="collage-channels">Paid Social · Strategic Organic</span>
+            <div class="collage-metrics">
+              <span class="collage-metric">CPA<b>$4.80</b></span>
+              <span class="collage-metric">CR<b>4.1%</b></span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="collage-item">
+        <video src="media/comic-trailer.mp4" autoplay muted loop playsinline></video>
+        <div class="collage-data">
+          <span class="collage-industry">Transmedia</span>
+          <span class="collage-campaign">Unioverse — Comics</span>
+          <div class="collage-detail">
+            <span class="collage-channels">Strategic Organic · Paid Social</span>
+            <div class="collage-metrics">
+              <span class="collage-metric">CPM<b>$4.80</b></span>
+              <span class="collage-metric">CR<b>3.8%</b></span>
+            </div>
+          </div>
+          <a href="https://hexpublishers.com/publications_unioverse-hero-collection.html" target="_blank" rel="noopener" class="collage-link">Order &#8599;</a>
+        </div>
+      </div>
+      <div class="collage-item">
+        <video src="media/reyu-portal.mp4" autoplay muted loop playsinline style="object-position: center 30%;"></video>
+        <div class="collage-data">
+          <span class="collage-industry">Gaming</span>
+          <span class="collage-campaign">Unioverse — Reyu Drop</span>
+          <div class="collage-detail">
+            <span class="collage-channels">Paid Social · Strategic Organic</span>
+            <div class="collage-metrics">
+              <span class="collage-metric">CPA<b>$3.20</b></span>
+              <span class="collage-metric">CR<b>5.2%</b></span>
             </div>
           </div>
         </div>
@@ -1338,77 +1427,6 @@ footer {
         </div>
       </div>
       <div class="collage-item">
-        <video src="media/tor-animation.mp4" autoplay muted loop playsinline style="object-position: center 20%; transform: scale(1.3); transform-origin: center 20%;"></video>
-        <div class="collage-data">
-          <span class="collage-industry">Gaming</span>
-          <span class="collage-campaign">Unioverse — Tor Drop</span>
-          <div class="collage-detail">
-            <span class="collage-channels">Paid Social · Strategic Organic</span>
-            <div class="collage-metrics">
-              <span class="collage-metric">CPA<b>$4.80</b></span>
-              <span class="collage-metric">CR<b>4.1%</b></span>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="collage-item">
-        <video src="media/unioverse-collectibles.mp4" autoplay muted loop playsinline></video>
-        <div class="collage-data">
-          <span class="collage-industry">Transmedia</span>
-          <span class="collage-campaign">Unioverse — Collectibles</span>
-          <div class="collage-detail">
-            <span class="collage-channels">Strategic Organic</span>
-            <div class="collage-metrics">
-              <span class="collage-metric">CPM<b>$0.01</b></span>
-              <span class="collage-metric">CR<b>3.4%</b></span>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="collage-item">
-        <video src="media/comic-trailer.mp4" autoplay muted loop playsinline></video>
-        <div class="collage-data">
-          <span class="collage-industry">Transmedia</span>
-          <span class="collage-campaign">Unioverse — Comics</span>
-          <div class="collage-detail">
-            <span class="collage-channels">Strategic Organic · Paid Social</span>
-            <div class="collage-metrics">
-              <span class="collage-metric">CPM<b>$4.80</b></span>
-              <span class="collage-metric">CR<b>3.8%</b></span>
-            </div>
-          </div>
-          <a href="https://hexpublishers.com/publications_unioverse-hero-collection.html" target="_blank" rel="noopener" class="collage-link">Order &#8599;</a>
-        </div>
-      </div>
-      <div class="collage-item">
-        <video src="media/spekter-city.mp4" autoplay muted loop playsinline></video>
-        <div class="collage-data">
-          <span class="collage-industry">Gaming</span>
-          <span class="collage-campaign">Spekter City — Closed Beta</span>
-          <div class="collage-detail">
-            <span class="collage-channels">Paid Social · Community · ASO</span>
-            <div class="collage-metrics">
-              <span class="collage-metric">CPI<b>$0.12</b></span>
-              <span class="collage-metric">D7<b>38%</b></span>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="collage-item">
-        <video src="media/cinematic-trailer.mp4" autoplay muted loop playsinline style="transform: scale(1.35); transform-origin: center center;"></video>
-        <div class="collage-data">
-          <span class="collage-industry">Gaming</span>
-          <span class="collage-campaign">Unioverse — Launch</span>
-          <div class="collage-detail">
-            <span class="collage-channels">Paid Social · Display</span>
-            <div class="collage-metrics">
-              <span class="collage-metric">CPI<b>$0.10</b></span>
-              <span class="collage-metric">CR<b>4.2%</b></span>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="collage-item">
         <video src="media/aitv-reel.mp4" autoplay muted loop playsinline preload="auto"></video>
         <div class="collage-data">
           <span class="collage-industry">Creative</span>
@@ -1423,36 +1441,35 @@ footer {
         </div>
       </div>
       <div class="collage-item">
-        <video src="media/hoverdrome-tourney.mp4" autoplay muted loop playsinline></video>
+        <video src="media/spekter-city.mp4" autoplay muted loop playsinline></video>
         <div class="collage-data">
           <span class="collage-industry">Gaming</span>
-          <span class="collage-campaign">Unioverse — Games</span>
+          <span class="collage-campaign">Spekter City — Closed Beta</span>
           <div class="collage-detail">
-            <span class="collage-channels">Esports · UGC · Community</span>
+            <span class="collage-channels">Paid Social · Community · ASO</span>
             <div class="collage-metrics">
-              <span class="collage-metric">Modes<b>2</b></span>
-              <span class="collage-metric">Type<b>F2P</b></span>
-            </div>
-          </div>
-          <a href="https://www.youtube.com/watch?v=Bca61-RowT0" target="_blank" rel="noopener" class="collage-link">Watch &#8599;</a>
-        </div>
-      </div>
-      <div class="collage-item">
-        <video src="media/reyu-portal.mp4" autoplay muted loop playsinline style="object-position: center 30%;"></video>
-        <div class="collage-data">
-          <span class="collage-industry">Gaming</span>
-          <span class="collage-campaign">Unioverse — Reyu Drop</span>
-          <div class="collage-detail">
-            <span class="collage-channels">Paid Social · Strategic Organic</span>
-            <div class="collage-metrics">
-              <span class="collage-metric">CPA<b>$3.20</b></span>
-              <span class="collage-metric">CR<b>5.2%</b></span>
+              <span class="collage-metric">CPI<b>$0.12</b></span>
+              <span class="collage-metric">D7<b>38%</b></span>
             </div>
           </div>
         </div>
       </div>
       <!-- Duplicate for seamless loop -->
       <div class="collage-item">
+        <video src="media/cinematic-trailer.mp4" autoplay muted loop playsinline style="transform: scale(1.35); transform-origin: center center;"></video>
+        <div class="collage-data">
+          <span class="collage-industry">Gaming</span>
+          <span class="collage-campaign">Unioverse — Launch</span>
+          <div class="collage-detail">
+            <span class="collage-channels">Paid Social · Display</span>
+            <div class="collage-metrics">
+              <span class="collage-metric">CPI<b>$0.10</b></span>
+              <span class="collage-metric">CR<b>4.2%</b></span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="collage-item">
         <img src="media/krisha-render.jpg" alt="Unioverse — Krishah" style="object-position: center 0%;">
         <div class="collage-data">
           <span class="collage-industry">Gaming</span>
@@ -1462,6 +1479,78 @@ footer {
             <div class="collage-metrics">
               <span class="collage-metric">CPA<b>$2.80</b></span>
               <span class="collage-metric">CR<b>4.6%</b></span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="collage-item">
+        <video src="media/hoverdrome-tourney.mp4" autoplay muted loop playsinline></video>
+        <div class="collage-data">
+          <span class="collage-industry">Gaming</span>
+          <span class="collage-campaign">Unioverse — Games</span>
+          <div class="collage-detail">
+            <span class="collage-channels">Esports · UGC · Community</span>
+            <div class="collage-metrics">
+              <span class="collage-metric">Modes<b>2</b></span>
+              <span class="collage-metric">Type<b>F2P</b></span>
+            </div>
+          </div>
+          <a href="https://www.youtube.com/watch?v=Bca61-RowT0" target="_blank" rel="noopener" class="collage-link">Watch &#8599;</a>
+        </div>
+      </div>
+      <div class="collage-item">
+        <video src="media/unioverse-collectibles.mp4" autoplay muted loop playsinline></video>
+        <div class="collage-data">
+          <span class="collage-industry">Transmedia</span>
+          <span class="collage-campaign">Unioverse — Collectibles</span>
+          <div class="collage-detail">
+            <span class="collage-channels">Strategic Organic</span>
+            <div class="collage-metrics">
+              <span class="collage-metric">CPM<b>$0.01</b></span>
+              <span class="collage-metric">CR<b>3.4%</b></span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="collage-item">
+        <video src="media/tor-animation.mp4" autoplay muted loop playsinline style="object-position: center 20%; transform: scale(1.3); transform-origin: center 20%;"></video>
+        <div class="collage-data">
+          <span class="collage-industry">Gaming</span>
+          <span class="collage-campaign">Unioverse — Tor Drop</span>
+          <div class="collage-detail">
+            <span class="collage-channels">Paid Social · Strategic Organic</span>
+            <div class="collage-metrics">
+              <span class="collage-metric">CPA<b>$4.80</b></span>
+              <span class="collage-metric">CR<b>4.1%</b></span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="collage-item">
+        <video src="media/comic-trailer.mp4" autoplay muted loop playsinline></video>
+        <div class="collage-data">
+          <span class="collage-industry">Transmedia</span>
+          <span class="collage-campaign">Unioverse — Comics</span>
+          <div class="collage-detail">
+            <span class="collage-channels">Strategic Organic · Paid Social</span>
+            <div class="collage-metrics">
+              <span class="collage-metric">CPM<b>$4.80</b></span>
+              <span class="collage-metric">CR<b>3.8%</b></span>
+            </div>
+          </div>
+          <a href="https://hexpublishers.com/publications_unioverse-hero-collection.html" target="_blank" rel="noopener" class="collage-link">Order &#8599;</a>
+        </div>
+      </div>
+      <div class="collage-item">
+        <video src="media/reyu-portal.mp4" autoplay muted loop playsinline style="object-position: center 30%;"></video>
+        <div class="collage-data">
+          <span class="collage-industry">Gaming</span>
+          <span class="collage-campaign">Unioverse — Reyu Drop</span>
+          <div class="collage-detail">
+            <span class="collage-channels">Paid Social · Strategic Organic</span>
+            <div class="collage-metrics">
+              <span class="collage-metric">CPA<b>$3.20</b></span>
+              <span class="collage-metric">CR<b>5.2%</b></span>
             </div>
           </div>
         </div>
@@ -1496,46 +1585,17 @@ footer {
         </div>
       </div>
       <div class="collage-item">
-        <video src="media/tor-animation.mp4" autoplay muted loop playsinline style="object-position: center 20%; transform: scale(1.3); transform-origin: center 20%;"></video>
+        <video src="media/aitv-reel.mp4" autoplay muted loop playsinline preload="auto"></video>
         <div class="collage-data">
-          <span class="collage-industry">Gaming</span>
-          <span class="collage-campaign">Unioverse — Tor Drop</span>
+          <span class="collage-industry">Creative</span>
+          <span class="collage-campaign">AITV — Agency Reel</span>
           <div class="collage-detail">
-            <span class="collage-channels">Paid Social · Strategic Organic</span>
+            <span class="collage-channels">Full-Service · All Platforms</span>
             <div class="collage-metrics">
-              <span class="collage-metric">CPA<b>$4.80</b></span>
-              <span class="collage-metric">CR<b>4.1%</b></span>
+              <span class="collage-metric">Clients<b>20+</b></span>
+              <span class="collage-metric">Platforms<b>All</b></span>
             </div>
           </div>
-        </div>
-      </div>
-      <div class="collage-item">
-        <video src="media/unioverse-collectibles.mp4" autoplay muted loop playsinline></video>
-        <div class="collage-data">
-          <span class="collage-industry">Transmedia</span>
-          <span class="collage-campaign">Unioverse — Collectibles</span>
-          <div class="collage-detail">
-            <span class="collage-channels">Strategic Organic</span>
-            <div class="collage-metrics">
-              <span class="collage-metric">CPM<b>$0.01</b></span>
-              <span class="collage-metric">CR<b>3.4%</b></span>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="collage-item">
-        <video src="media/comic-trailer.mp4" autoplay muted loop playsinline></video>
-        <div class="collage-data">
-          <span class="collage-industry">Transmedia</span>
-          <span class="collage-campaign">Unioverse — Comics</span>
-          <div class="collage-detail">
-            <span class="collage-channels">Strategic Organic · Paid Social</span>
-            <div class="collage-metrics">
-              <span class="collage-metric">CPM<b>$4.80</b></span>
-              <span class="collage-metric">CR<b>3.8%</b></span>
-            </div>
-          </div>
-          <a href="https://hexpublishers.com/publications_unioverse-hero-collection.html" target="_blank" rel="noopener" class="collage-link">Order &#8599;</a>
         </div>
       </div>
       <div class="collage-item">
@@ -1552,59 +1612,6 @@ footer {
           </div>
         </div>
       </div>
-      <div class="collage-item">
-        <video src="media/cinematic-trailer.mp4" autoplay muted loop playsinline style="transform: scale(1.35); transform-origin: center center;"></video>
-        <div class="collage-data">
-          <span class="collage-industry">Gaming</span>
-          <span class="collage-campaign">Unioverse — Launch</span>
-          <div class="collage-detail">
-            <span class="collage-channels">Paid Social · Display</span>
-            <div class="collage-metrics">
-              <span class="collage-metric">CPI<b>$0.10</b></span>
-              <span class="collage-metric">CR<b>4.2%</b></span>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="collage-item">
-        <video src="media/aitv-reel.mp4" autoplay muted loop playsinline preload="auto"></video>
-        <div class="collage-data">
-          <span class="collage-industry">Creative</span>
-          <span class="collage-campaign">AITV — Agency Reel</span>
-          <div class="collage-detail">
-            <span class="collage-channels">Full-Service · All Platforms</span>
-            <div class="collage-metrics">
-              <span class="collage-metric">Clients<b>20+</b></span>
-              <span class="collage-metric">Platforms<b>All</b></span>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="collage-item">
-        <video src="media/hoverdrome-tourney.mp4" autoplay muted loop playsinline></video>
-        <div class="collage-data">
-          <span class="collage-industry">Gaming</span>
-          <span class="collage-campaign">Unioverse — Games</span>
-          <div class="collage-detail">
-            <span class="collage-channels">Esports · UGC · Community</span>
-            <div class="collage-metrics">
-              <span class="collage-metric">Modes<b>2</b></span>
-              <span class="collage-metric">Type<b>F2P</b></span>
-            </div>
-          </div>
-          <a href="https://www.youtube.com/watch?v=Bca61-RowT0" target="_blank" rel="noopener" class="collage-link">Watch &#8599;</a>
-        </div>
-      </div>
-      <div class="collage-item">
-        <video src="media/reyu-portal.mp4" autoplay muted loop playsinline style="object-position: center 30%;"></video>
-        <div class="collage-data">
-          <span class="collage-industry">Gaming</span>
-          <span class="collage-campaign">Unioverse — Reyu Drop</span>
-          <div class="collage-detail">
-            <span class="collage-channels">Paid Social · Strategic Organic</span>
-            <div class="collage-metrics">
-              <span class="collage-metric">CPA<b>$3.20</b></span>
-              <span class="collage-metric">CR<b>5.2%</b></span>
             </div>
           </div>
         </div>
