@@ -435,21 +435,7 @@ nav.nav-hidden {
 .collage-placeholder--6 { background: #4a2e2e; }
 
 @media (max-width: 768px) {
-  .media-collage { overflow: visible; }
-  .collage-track {
-    animation: none;
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: none;
-    padding: var(--space-md) var(--space-md);
-  }
-  .collage-track::-webkit-scrollbar { display: none; }
-  .collage-item {
-    width: 260px;
-    height: 160px;
-    scroll-snap-align: start;
-  }
+  .collage-item { width: 260px; height: 160px; }
 }
 
 /* Touch active state — tap to reveal (no hover on mobile) */
