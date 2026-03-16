@@ -524,31 +524,10 @@ nav.nav-open .menu-toggle span:nth-child(3) {
   .collage-item { width: 260px; height: 160px; }
 }
 
-/* Dismiss chevron — top-right indicator */
-.collage-item::after {
-  content: '';
-  position: absolute;
-  top: 0.6rem;
-  right: 0.6rem;
-  width: 7px;
-  height: 7px;
-  border-right: 1.5px solid rgba(240, 228, 203, 0.5);
-  border-bottom: 1.5px solid rgba(240, 228, 203, 0.5);
-  transform: rotate(45deg);
-  z-index: 3;
-  opacity: 0;
-  transition: opacity 0.3s cubic-bezier(0.22, 1, 0.36, 1);
-  pointer-events: none;
-}
-@media (hover: hover) {
-  .collage-item:hover::after { opacity: 1; }
-}
-
 /* Touch active state — tap to reveal (no hover on mobile) */
 .collage-item.active img,
 .collage-item.active video { filter: brightness(0.65); }
 .collage-item.active .collage-data { opacity: 1; pointer-events: auto; }
-.collage-item.active::after { opacity: 1; }
 
 /* --- Section Label --- */
 .section-label {
