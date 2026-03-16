@@ -828,6 +828,30 @@ nav.scrolled {
   text-decoration: underline;
 }
 
+.testimonials-dots {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: var(--space-md);
+}
+
+.testimonials-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--text-3);
+  opacity: 0.3;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  transition: opacity 0.3s ease;
+}
+
+.testimonials-dot.active {
+  opacity: 1;
+  background: var(--dark);
+}
+
 @media (max-width: 768px) {
   .testimonials-track { gap: 1.25rem; }
   .testimonial-card {
@@ -1693,6 +1717,10 @@ footer {
       <button class="testimonial-toggle" onclick="this.previousElementSibling.classList.toggle('expanded'); this.textContent = this.previousElementSibling.classList.contains('expanded') ? 'Show less' : 'See more';">See more</button>
     </div>
   </div>
+  <div class="testimonials-dots">
+    <button class="testimonials-dot active" data-page="0"></button>
+    <button class="testimonials-dot" data-page="1"></button>
+  </div>
 </section>
 
 <!-- Footer / Contact -->
@@ -1746,6 +1774,29 @@ if (testimonialsSection) {
   }, { threshold: 0.1 });
   testimonialsReveal.observe(testimonialsSection);
 }
+
+// --- Testimonial Dot Indicators ---
+(function() {
+  const track = document.querySelector('.testimonials-track');
+  const dots = document.querySelectorAll('.testimonials-dot');
+  if (!track || !dots.length) return;
+
+  // Update active dot based on scroll position
+  track.addEventListener('scroll', () => {
+    const scrollRatio = track.scrollLeft / (track.scrollWidth - track.clientWidth);
+    const page = Math.round(scrollRatio * (dots.length - 1));
+    dots.forEach((d, i) => d.classList.toggle('active', i === page));
+  }, { passive: true });
+
+  // Click dot to scroll to page
+  dots.forEach(dot => {
+    dot.addEventListener('click', () => {
+      const page = parseInt(dot.dataset.page);
+      const scrollTo = page * (track.scrollWidth - track.clientWidth) / (dots.length - 1);
+      track.scrollTo({ left: scrollTo, behavior: 'smooth' });
+    });
+  });
+})();
 
 // --- Nav Scroll Shrink ---
 const nav = document.querySelector('nav');
